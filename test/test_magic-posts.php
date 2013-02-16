@@ -1,21 +1,18 @@
 <?php
 
-$Magic_Posts_Test = TRUE;
-
-require_once('magic-posts.php');
+require_once('lib/magic-posts.php');
+require_once('lib/magic-posts/scaffolds.php');
 
 class Magic_Posts_Test extends PHPUnit_Framework_TestCase
 {
 
-  public function test_process_scaffold()
+  public function test_scaffold()
   {
 
-    /*
-    $debug = Magic_Posts::getInstance(true)->process_scaffold(
+    $debug = Magic_Posts::instance()->scaffold(
       "Produto"
     );
-    print_r($debug);
-    */
+    //print_r($debug);
 
     $this->assertEquals(
       array(
@@ -25,7 +22,7 @@ class Magic_Posts_Test extends PHPUnit_Framework_TestCase
           array('Valor do Produto', 'text')
         )
       ),
-      Magic_Posts::getInstance(true)->process_scaffold(
+      Magic_Posts::instance()->scaffold(
         "Produto 'Nome do Produto':text 'Valor do Produto':text"
       )
     );
@@ -39,7 +36,7 @@ class Magic_Posts_Test extends PHPUnit_Framework_TestCase
           array('Imagem', 'image')
         )
       ),
-      Magic_Posts::getInstance(true)->process_scaffold(
+      Magic_Posts::instance()->scaffold(
         'Cachorro "Nome do Produto":text "Valor do Produto":text Imagem:image'
       )
     );
@@ -53,7 +50,7 @@ class Magic_Posts_Test extends PHPUnit_Framework_TestCase
           array('Imagem', 'image')
         )
       ),
-      Magic_Posts::getInstance(true)->process_scaffold(
+      Magic_Posts::instance()->scaffold(
         'Cachorro \'Nome do Produto\':text "Valor dos Produto\'s":text Imagem:image'
       )
     );
