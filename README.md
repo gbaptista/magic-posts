@@ -7,7 +7,7 @@ Usage
 --------
 
 ```bash
-Product Price:text 'In Stock':text Shipping:text
+Product Price:string 'In Stock':string Shipping:string Description:editor
 ```
 
 ```bash
@@ -18,7 +18,9 @@ Command | Description
 --- | ---
 `title:false` | Disable WordPress Title. `default:true`
 `editor:true` | Enable WordPress Editor. `default:false`
-`String:text` | Simple text field.
+`'My Filed':string` | Custom text field.
+`'My Filed':text` | Custom textarea field.
+`'My Filed':editor` | Custom Wordpress Editor.
 
 WordPress Post Feature | Default
 --- | ---
@@ -37,6 +39,6 @@ post-formats | `false`
 Demo
 --------
 
-![Magic Posts](http://gbaptista.com/images/m-p-01-s.png "Magic Posts")
+![Magic Posts](http://gbaptista.com/images/m-p-01-s-b.png "Magic Posts")
 ![Magic Posts](http://gbaptista.com/images/m-p-02-s.png "Magic Posts")
 ![Magic Posts](http://gbaptista.com/images/m-p-03-s.png "Magic Posts")

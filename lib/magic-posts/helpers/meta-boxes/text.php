@@ -1,1 +1,1 @@
-<input type="text" name="<?php echo $field_name; ?>" value="<?php echo $field_value; ?>" />
+<textarea name="<?php echo $field_name; ?>"><?php echo $field_value; ?></textarea>

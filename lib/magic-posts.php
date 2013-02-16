@@ -5,7 +5,7 @@ if(!class_exists('Magic_Posts')) {
   class Magic_Posts {
 
     public $meta_box_types = array(
-      'text'
+      'string', 'text', 'editor'
     );
 
     public $custom_posts_supports = array(
