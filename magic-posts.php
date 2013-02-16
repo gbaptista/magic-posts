@@ -45,34 +45,19 @@ if(!class_exists('Magic_Posts')) {
       }
     }
 
-    private function add_custom_post($title, $fields)
+    public function build_custom_posts()
     {
 
-      $post_type = substr('magic-posts-'.sanitize_title($title), 0, 20);
+      $scaffolds = stripslashes(get_option('magic-posts_scaffolds'));
 
-      register_post_type(
-        $post_type,
-        array(
-          'labels' => array(
-            'name' => __( $title.'s' ),
-            'singular_name' => __( $title )
-          ),
-          'supports' => array(FALSE),
-          'public' => true,
-          'has_archive' => true,
-        )
-      );
+      $scaffolds = explode("\n", $scaffolds);
 
-      $this->custom_fields[] = array($post_type, $fields);
+      $this->custom_fields = array();
 
-      /*
-       * Supports:
-       * title, editor, author, thumbnail,
-       * excerpt, trackbacks, custom-fields,
-       * comments, revisions, page-attributes,
-       * post-formats
-       *
-       */
+      foreach($scaffolds as $scaffold) {
+        $scaffold = $this->process_scaffold(trim($scaffold));
+        if($scaffold) $this->add_custom_post($scaffold['title'], $scaffold['fields']);
+      }
 
     }
 
@@ -110,20 +95,44 @@ if(!class_exists('Magic_Posts')) {
 
     }
 
-    public function build_custom_posts()
+    private function add_custom_post($title, $fields)
     {
 
-      $scaffolds = stripslashes(get_option('magic-posts_scaffolds'));
+      $post_type = substr('m-p-'.sanitize_title($title), 0, 20);
 
-      $scaffolds = explode("\n", $scaffolds);
+      register_post_type(
+        $post_type,
+        array(
+          'labels' => array(
+            'name' => __( $title.'s' ),
+            'singular_name' => __( $title )
+          ),
+          'supports' => array(FALSE),
+          'public' => true,
+          'has_archive' => true,
+        )
+      );
 
-      $this->custom_fields = array();
+      $this->custom_fields[] = array($post_type, $fields);
 
-      foreach($scaffolds as $scaffold) {
-        $scaffold = $this->process_scaffold(trim($scaffold));
-        $this->add_custom_post($scaffold['title'], $scaffold['fields']);
+      /*
+       * Supports:
+       * title, editor, author, thumbnail,
+       * excerpt, trackbacks, custom-fields,
+       * comments, revisions, page-attributes,
+       * post-formats
+       *
+       */
+
+    }
+
+    public function build_custom_meta_boxes()
+    {
+      foreach ($this->custom_fields as $post_type) {
+        foreach($post_type[1] as $field) {
+          $this->add_custom_meta_boxes($post_type[0], $field[0], $field[1]);
+        }
       }
-
     }
 
     private function add_custom_meta_boxes($post_type, $field, $type)
@@ -134,15 +143,6 @@ if(!class_exists('Magic_Posts')) {
         'post_custom_meta_box',
         $post_type
       );
-    }
-
-    public function build_custom_meta_boxes()
-    {
-      foreach ($this->custom_fields as $post_type) {
-        foreach($post_type[1] as $field) {
-          $this->add_custom_meta_boxes($post_type[0], $field[0], $field[1]);
-        }
-      }
     }
 
     private function admin_menu()

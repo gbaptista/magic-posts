@@ -61,4 +61,3 @@ class Magic_Posts_Test extends PHPUnit_Framework_TestCase
   }
 
 }
-?>
