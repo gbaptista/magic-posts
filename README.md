@@ -18,9 +18,9 @@ Command | Description
 --- | ---
 `title:false` | Disable WordPress Title. `default:true`
 `editor:true` | Enable WordPress Editor. `default:false`
-`'My Filed':string` | Custom text field.
-`'My Filed':text` | Custom textarea field.
-`'My Filed':editor` | Custom Wordpress Editor.
+`'My Field':string` | Custom text field.
+`'My Field':text` | Custom textarea field.
+`'My Field':editor` | Custom Wordpress Editor.
 
 WordPress Post Feature | Default
 --- | ---
