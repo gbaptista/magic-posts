@@ -16,11 +16,11 @@ Article editor:true
 
 Command | Description
 --- | ---
-`title:false` | Disable Wordpress Title. `default:true`
-`editor:true` | Enable Wordpress Editor. `default:false`
+`title:false` | Disable WordPress Title. `default:true`
+`editor:true` | Enable WordPress Editor. `default:false`
 `String:text` | Simple text field.
 
-Wordpress Post Feature | Default
+WordPress Post Feature | Default
 --- | ---
 title | `true`
 editor | `false`
