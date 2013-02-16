@@ -1,4 +1,4 @@
-WP-Magic-Custom-Posts
+Magic Posts
 --------
 
 Coming soon...

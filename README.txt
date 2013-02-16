@@ -1,4 +1,4 @@
-=== WP-Magic-Custom-Posts ===
+=== Magic Posts ===
 Contributors: gbaptistas
 Tags: custom posts, custom fields, custom taxonomies
 Requires at least: 3.0.1
@@ -13,8 +13,8 @@ Coming soon...
 
 Coming soon...
 
-See: https://github.com/gbaptista/wp-magic-custom-posts
+See: https://github.com/gbaptista/magic-posts
 
 == Installation ==
 
-See: https://github.com/gbaptista/wp-magic-custom-posts
+See: https://github.com/gbaptista/magic-posts
