@@ -4,6 +4,24 @@ if(!class_exists('Magic_Posts')) {
 
   class Magic_Posts {
 
+    public $meta_box_types = array(
+      'text'
+    );
+
+    public $custom_posts_supports = array(
+      'title'           => TRUE,
+      'editor'          => FALSE,
+      'author'          => FALSE,
+      'thumbnail'       => FALSE,
+      'excerpt'         => FALSE,
+      'trackbacks'      => FALSE,
+      'custom-fields'   => FALSE,
+      'comments'        => FALSE,
+      'revisions'       => FALSE,
+      'page-attributes' => FALSE,
+      'post-formats'    => FALSE
+    );
+
     private static $instance;
 
     public static function instance()

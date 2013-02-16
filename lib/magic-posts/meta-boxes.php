@@ -76,6 +76,9 @@ Magic_Posts::instance()->inject(
 
   'meta_box', function($post_type, $field, $type) {
 
+    if(!in_array($type, Magic_Posts::instance()->meta_box_types))
+      return NULL;
+
     $meta_box = sanitize_title($field . ' '. $type);
 
     add_meta_box(

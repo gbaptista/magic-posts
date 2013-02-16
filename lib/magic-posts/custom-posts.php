@@ -20,15 +20,6 @@ Magic_Posts::instance()->inject(
 
   'custom_post', function($title, $fields) {
 
-    /*
-     * Supports:
-     * title, editor, author, thumbnail,
-     * excerpt, trackbacks, custom-fields,
-     * comments, revisions, page-attributes,
-     * post-formats
-     *
-    */
-
     $post_type = substr('m-p-'.sanitize_title($title), 0, 20);
 
     # [todo] Smart pluralize and l18n.
@@ -50,11 +41,26 @@ Magic_Posts::instance()->inject(
       'menu_name'           => __($plural)
     );
 
+    
+
+    $supports_ar = Magic_Posts::instance()->custom_posts_supports;
+
+    foreach($fields as $support) {
+      if(isset($supports_ar[$support[0]]))
+        $supports_ar[$support[0]] = $support[1];
+    }
+
+    $supports = array();
+
+    foreach ($supports_ar as $support => $value) {
+      if(!empty($value) && $value !== 'false') $supports[] = $support;
+    }
+
     register_post_type(
       $post_type,
       array(
         'labels'      => $labels,
-        'supports'    => array('title'),
+        'supports'    => $supports,
         'public'      => true,
         'has_archive' => true,
       )

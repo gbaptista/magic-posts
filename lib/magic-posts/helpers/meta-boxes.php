@@ -4,6 +4,9 @@ function Magic_Posts_Meta_Box($post, $args) {
 
   $type = $args['args']['type'];
 
+  if(!in_array($type, Magic_Posts::instance()->meta_box_types))
+    return NULL;
+
   $plugin_folder = preg_replace('/lib\/magic-posts.*/', '', plugin_basename(__FILE__));
 
   // [todo] Just for the first...
