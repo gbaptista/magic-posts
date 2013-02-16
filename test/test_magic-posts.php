@@ -10,7 +10,7 @@ class Magic_Posts_Test extends PHPUnit_Framework_TestCase
   {
 
     $debug = Magic_Posts::instance()->scaffold(
-      "Produto"
+      "Product Price:text 'In Stock':text Shipping:text"
     );
     //print_r($debug);
 

@@ -6,6 +6,7 @@
 
   <form method="post">
 
+    <h2>Scaffolds:</h2>
     <textarea name="scaffolds" class="scaffolds"><?php echo stripslashes($scaffolds); ?></textarea>
 
     <?php submit_button(); ?>

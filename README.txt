@@ -7,11 +7,11 @@ Stable tag: 0.1
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
-Coming soon...
+Create Custom Post Types with simple scaffolds.
 
 == Description ==
 
-Coming soon...
+Create Custom Post Types with simple scaffolds.
 
 See: https://github.com/gbaptista/magic-posts
 
