@@ -8,8 +8,10 @@ Magic_Posts::instance()->inject(
 
     Magic_Posts::instance()->custom_fields = array();
 
-    foreach($scaffolds as $scaffold) {
-      Magic_Posts::instance()->custom_post($scaffold['title'], $scaffold['fields']);
+    if(!empty($scaffolds)) {
+      foreach($scaffolds as $scaffold) {
+        Magic_Posts::instance()->custom_post($scaffold['title'], $scaffold['fields']);
+      }
     }
 
   }
