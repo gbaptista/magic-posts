@@ -3,7 +3,7 @@ Contributors: gbaptistas
 Tags: custom posts, custom fields, custom taxonomies
 Requires at least: 3.0.1
 Tested up to: 3.4
-Stable tag: 0.0.1
+Stable tag: 0.0.2
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -25,3 +25,17 @@ See: https://github.com/gbaptista/magic-posts
 2. Scaffolds
 3. Products
 4. Articles
+
+== Changelog ==
+
+= 0.0.2 =
+* Scaffold support for WordPress Default Posts
+* Scaffold support for WordPress Default Pages
+* Scaffold support for WordPress Default Pages ID or Post ID
+
+== Upgrade Notice ==
+
+= 0.0.2 =
+* Scaffold support for WordPress Default Posts
+* Scaffold support for WordPress Default Pages
+* Scaffold support for WordPress Default Pages ID or Post ID

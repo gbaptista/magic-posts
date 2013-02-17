@@ -48,9 +48,28 @@ Magic_Posts::instance()->inject(
 
     foreach (Magic_Posts::instance()->custom_fields as $post_type) {
 
+      // [todo] I think... We have a performance problem in this code...
+      //        We are checking get_post_type thousand times!
+
       // Current post-type:
-      if(!empty($_GET['post_type']))  $current_post_type = $_GET['post_type'];
-      elseif(!empty($_GET['post']))   $current_post_type = get_post_type($_GET['post']);
+      if($post_type[0] == 'm-p-post' || $post_type[0] == 'm-p-page')
+      {
+
+        if(!empty($_GET['post_type']))  $force_post_type = $_GET['post_type'];
+        elseif(!empty($_GET['post']))   $force_post_type = get_post_type($_GET['post']);
+        elseif(basename($_SERVER['REQUEST_URI'], '.php') == 'post-new') $force_post_type = 'post';
+        $current_post_type = 'm-p-' . $force_post_type;
+      } elseif(preg_match('/m-p-[0-9]{1,}/', $post_type[0])) {
+        $current_post_type = 'm-p-' . $_GET['post'];
+        if(!empty($_GET['post_type']))  $force_post_type = $_GET['post_type'];
+        elseif(!empty($_GET['post']))   $force_post_type = get_post_type($_GET['post']);
+      } else {
+        if(!empty($_GET['post_type']))  $current_post_type = $_GET['post_type'];
+        elseif(!empty($_GET['post']))   $current_post_type = get_post_type($_GET['post']);
+        $force_post_type = NULL;
+      }
+
+      //echo $current_post_type . '<br />' . $post_type[0]; exit;
 
       // Just load if needed:
       if($current_post_type == $post_type[0])
@@ -60,7 +79,7 @@ Magic_Posts::instance()->inject(
 
         foreach($post_type[1] as $field) {
           Magic_Posts::instance()->meta_box(
-            $post_type[0], $field[0], $field[1]
+            $post_type[0], $field[0], $field[1], $force_post_type
           );
         }
 
@@ -74,18 +93,21 @@ Magic_Posts::instance()->inject(
 
 Magic_Posts::instance()->inject(
 
-  'meta_box', function($post_type, $field, $type) {
+  'meta_box', function($post_type, $field, $type, $force_post_type=NULL) {
 
     if(!in_array($type, Magic_Posts::instance()->meta_box_types))
       return NULL;
 
     $meta_box = sanitize_title($field . ' '. $type);
 
+    if($force_post_type) $post_type_set = $force_post_type;
+    else $post_type_set = $post_type;
+
     add_meta_box(
       $meta_box,
-      __($field.':'),
+      __($field),
       'Magic_Posts_Meta_Box',
-      $post_type, 'advanced', 'default', array(
+      $post_type_set, 'advanced', 'default', array(
         'post_type' => $post_type,
         'field'     => $field,
         'type'      => $type,

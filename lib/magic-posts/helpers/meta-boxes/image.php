@@ -1,5 +1,6 @@
 <div class="m-p-m-b-image" id="<?php echo $field_name; ?>_image_box">
 
+  <!-- [todo] Load unique editor instance. -->
   <div class="wp_editor_hidden"><?php wp_editor('', $field_name.'_hidden'); ?></div>
 
   <div id="wp-content-media-buttons" class="wp-media-buttons">

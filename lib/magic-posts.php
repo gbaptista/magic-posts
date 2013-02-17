@@ -70,6 +70,8 @@ if(!class_exists('Magic_Posts')) {
 
         $dir = array_reverse(explode('/', dirname(__FILE__)));
 
+        if($dir[1] == 'trunk') $dir[1] = $dir[2];
+
         wp_register_script('magic-posts-js', plugins_url($dir[1].'/js/magic-posts.js'));
         wp_enqueue_script('magic-posts-js');
 

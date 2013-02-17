@@ -4,7 +4,10 @@
   font-size:16px; font-weight:bold; color:#666;
 }
 
-.m-p-m-b-editor .wp-editor-container { background-color:#FFF; }
+.m-p-m-b-editor .wp-editor-container,
+.m-p-m-b-mini-editor .wp-editor-container {
+  background-color:#FFF;
+}
 
 .m-p-m-b-image .wp_editor_hidden,
 .m-p-m-b-gallery .wp_editor_hidden,

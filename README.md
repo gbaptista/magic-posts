@@ -1,4 +1,4 @@
-Magic Posts
+Magic Posts 0.0.2
 --------
 
 Create [Custom Post Types](http://codex.wordpress.org/Post_Types#Custom_Types) with simple [scaffolds](http://en.wikipedia.org/wiki/Scaffold_\(programming\)).
@@ -8,12 +8,31 @@ Download: [http://wordpress.org/extend/plugins/magic-posts/](http://wordpress.or
 Usage
 --------
 
+### Custom Post Types
+
 ```bash
 Product Price:string 'In Stock':string Shipping:string Description:editor
 ```
 
 ```bash
 Article editor:true
+```
+
+### All WordPress Default Posts
+
+```bash
+[post] Photos:gallery
+```
+
+### All WordPress Default Pages
+
+```bash
+[page] Illustration:image Credits:string
+```
+
+### Post ID, Page ID or Custom Post Type ID
+```bash
+[378] Name:string Profile:image
 ```
 
 Command | Description
