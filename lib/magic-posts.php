@@ -79,6 +79,17 @@ if(!class_exists('Magic_Posts')) {
       }
       add_action('admin_enqueue_scripts', 'magic_posts_enqueue');
 
+      function magic_posts_links($links, $file) {
+
+        if(basename($file) == basename(__FILE__)) {
+          array_push($links, '<a href="' . site_url() . '/wp-admin/options-general.php?page=magic-posts-settings">Settings</a>');
+          array_push($links, '<a target="_blank" href="https://github.com/gbaptista/magic-posts#readme">Help</a>');
+        }
+ 
+        return $links;
+      }
+      add_filter('plugin_action_links', 'magic_posts_links', 10, 2);
+
     }
 
     // Inject Methods
