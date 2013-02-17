@@ -35,6 +35,9 @@ Article editor:true
 [378] Name:string Profile:image
 ```
 
+Command Reference
+--------
+
 Command | Description
 --- | ---
 `title:false` | Disable WordPress Title. `default:true`
