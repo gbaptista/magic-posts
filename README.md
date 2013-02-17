@@ -39,9 +39,10 @@ revisions | `false`
 page-attributes | `false`
 post-formats | `false`
 
-Demo
+Demos
 --------
 
+![Magic Posts](http://gbaptista.com/images/m-p-04-s.png "Magic Posts")
 ![Magic Posts](http://gbaptista.com/images/m-p-01-s-b.png "Magic Posts")
 ![Magic Posts](http://gbaptista.com/images/m-p-02-s.png "Magic Posts")
 ![Magic Posts](http://gbaptista.com/images/m-p-03-s.png "Magic Posts")
