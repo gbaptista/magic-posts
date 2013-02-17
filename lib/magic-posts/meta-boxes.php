@@ -26,7 +26,7 @@ Magic_Posts::instance()->inject(
 
     foreach($_POST as $name => $value) {
 
-      if(preg_match("/^$field_prefix-m-p-/", $name)) {
+      if(preg_match("/^$field_prefix-m-p\{/", $name)) {
 
         $name = '_'.str_replace($field_prefix.'-', '', $name);
         //$value = sanitize_text_field($value);
@@ -69,8 +69,6 @@ Magic_Posts::instance()->inject(
         $force_post_type = NULL;
       }
 
-      //echo $current_post_type . '<br />' . $post_type[0]; exit;
-
       // Just load if needed:
       if($current_post_type == $post_type[0])
       {
@@ -98,7 +96,7 @@ Magic_Posts::instance()->inject(
     if(!in_array($type, Magic_Posts::instance()->meta_box_types))
       return NULL;
 
-    $meta_box = sanitize_title($field . ' '. $type);
+    $meta_box = '{' . sanitize_title($field) . '}' . $type;
 
     if($force_post_type) $post_type_set = $force_post_type;
     else $post_type_set = $post_type;

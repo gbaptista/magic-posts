@@ -1,11 +1,17 @@
-Magic Posts 0.0.2
+Magic Posts 0.0.3
 --------
 
 Create [Custom Post Types](http://codex.wordpress.org/Post_Types#Custom_Types) with simple [scaffolds](http://en.wikipedia.org/wiki/Scaffold_\(programming\)).
 
 Download: [http://wordpress.org/extend/plugins/magic-posts/](http://wordpress.org/extend/plugins/magic-posts/)
 
-Usage
+* [Scaffolding](#scaffolding)
+* [Retrieving Data](#retrieving-data)
+* [Command Reference](#command-reference)
+* [Custom Post Types Features](#custom-post-types-features)
+* [Demos](#demos)
+
+Scaffolding
 --------
 
 ### Custom Post Types
@@ -35,6 +41,39 @@ Article editor:true
 [378] Name:string Profile:image
 ```
 
+Retrieving Data
+--------
+
+```bash
+Article Name:string Photo:image 'My Travel Photos':gallery
+```
+
+### Current Post
+```html
+<h4><?php echo magic_posts('Name'); ?></h4>
+
+<img src="<?php echo magic_posts('Photo')->url; ?>" width="50" height="50" />
+
+<ul>
+  <?php foreach(magic_posts('My Travel Photos') as $photo) { ?>
+    <li><img src="<?php echo $photo->url; ?>" width="50" height="50" /></li>
+  <?php } ?>
+</ul>
+```
+
+### Post ID
+```html
+<h4><?php echo magic_posts(137, 'Name'); ?></h4>
+
+<img src="<?php echo magic_posts(137, 'Photo')->url; ?>" width="50" height="50" />
+
+<ul>
+  <?php foreach(magic_posts(137, 'My Travel Photos') as $photo) { ?>
+    <li><img src="<?php echo $photo->url; ?>" width="50" height="50" /></li>
+  <?php } ?>
+</ul>
+```
+
 Command Reference
 --------
 
@@ -48,6 +87,9 @@ Command | Description
 `'My Field':mini-editor` | Custom Wordpress Mini-Editor (teeny).
 `'My Field':image` | Unique image from Media Library.
 `'My Field':gallery` | Multiple images from Media Library.
+
+Custom Post Types Features
+--------
 
 WordPress Post Feature | Default
 --- | ---

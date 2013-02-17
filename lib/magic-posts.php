@@ -22,6 +22,8 @@ if(!class_exists('Magic_Posts')) {
       'post-formats'    => FALSE
     );
 
+    public $metas = array();
+
     private static $instance;
 
     public static function instance()
@@ -44,12 +46,7 @@ if(!class_exists('Magic_Posts')) {
 
     }
 
-    public function site()
-    {
-
-      $this->init_custom_posts();
-
-    }
+    public function site() { $this->init_custom_posts(); }
 
     public function admin()
     {
@@ -82,12 +79,10 @@ if(!class_exists('Magic_Posts')) {
       add_action('admin_enqueue_scripts', 'magic_posts_enqueue');
 
       function magic_posts_links($links, $file) {
-
         if(basename($file) == basename(__FILE__)) {
           array_push($links, '<a href="' . site_url() . '/wp-admin/options-general.php?page=magic-posts-settings">Settings</a>');
           array_push($links, '<a target="_blank" href="https://github.com/gbaptista/magic-posts#readme">Help</a>');
         }
- 
         return $links;
       }
       add_filter('plugin_action_links', 'magic_posts_links', 10, 2);
@@ -130,6 +125,11 @@ if(!class_exists('Magic_Posts')) {
 
     require_once('magic-posts/scaffolds.php');
     require_once('magic-posts/custom-posts.php');
+    require_once('magic-posts/retrieve-meta.php');
+
+    function magic_posts($key, $force_id=NULL) {
+      return Magic_Posts::instance()->retrieve_meta($key, $force_id);
+    }
 
     Magic_Posts::instance()->site();
 
