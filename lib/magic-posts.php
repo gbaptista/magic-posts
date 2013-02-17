@@ -5,7 +5,7 @@ if(!class_exists('Magic_Posts')) {
   class Magic_Posts {
 
     public $meta_box_types = array(
-      'string', 'text', 'editor'
+      'string', 'text', 'editor', 'mini-editor', 'image', 'gallery'
     );
 
     public $custom_posts_supports = array(
@@ -65,6 +65,19 @@ if(!class_exists('Magic_Posts')) {
       function save_meta_boxes($id) {
         Magic_Posts::instance()->save_meta_boxes($id);
       } add_action('save_post', 'save_meta_boxes');
+
+      function magic_posts_enqueue() {
+
+        $dir = array_reverse(explode('/', dirname(__FILE__)));
+
+        wp_register_script('magic-posts-js', plugins_url($dir[1].'/js/magic-posts.js'));
+        wp_enqueue_script('magic-posts-js');
+
+        wp_register_style('magic-posts-css', plugins_url($dir[1].'/css/magic-posts.css'));
+        wp_enqueue_style('magic-posts-css');
+
+      }
+      add_action('admin_enqueue_scripts', 'magic_posts_enqueue');
 
     }
 

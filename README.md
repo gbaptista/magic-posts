@@ -18,9 +18,12 @@ Command | Description
 --- | ---
 `title:false` | Disable WordPress Title. `default:true`
 `editor:true` | Enable WordPress Editor. `default:false`
-`'My Field':string` | Custom text field.
-`'My Field':text` | Custom textarea field.
+`'My Field':string` | Text field.
+`'My Field':text` | Textarea field.
 `'My Field':editor` | Custom Wordpress Editor.
+`'My Field':mini-editor` | Custom Wordpress Mini-Editor (teeny).
+`'My Field':image` | Unique image from Media Library.
+`'My Field':gallery` | Multiple images from Media Library.
 
 WordPress Post Feature | Default
 --- | ---

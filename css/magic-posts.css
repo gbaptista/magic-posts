@@ -1,0 +1,23 @@
+.m-p-m-b-editor .wp-editor-container { background-color:#FFF; }
+
+.m-p-m-b-image .wp_editor_hidden,
+.m-p-m-b-gallery .wp_editor_hidden,
+.m-p-m-b-gallery .temp_medias {
+  display:none;
+}
+
+.m-p-m-b-image .media_show,
+.m-p-m-b-gallery .media_show {
+  text-align:center;
+}
+
+.m-p-m-b-image .media_show img {
+  max-width:510px; margin-top:5px;
+}
+.m-p-m-b-image .media_show a,
+.m-p-m-b-gallery .media_show div a {
+  display:block; color:red;
+}
+
+.m-p-m-b-gallery .media_show div { display:inline-block; margin:10px; }
+.m-p-m-b-gallery .media_show div img { display:block; width:100px; height:100px; }
