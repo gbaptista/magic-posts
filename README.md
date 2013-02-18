@@ -5,6 +5,8 @@ Create [Custom Post Types](http://codex.wordpress.org/Post_Types#Custom_Types) w
 
 Download: [http://wordpress.org/extend/plugins/magic-posts/](http://wordpress.org/extend/plugins/magic-posts/)
 
+Online Demo: [http://gbaptista.com/galeria-de-imagens/](http://gbaptista.com/galeria-de-imagens/)
+
 * [Scaffolding](#scaffolding)
 * [Retrieving Data](#retrieving-data)
 * [Retrieving Images](#retrieving-images)
