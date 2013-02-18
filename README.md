@@ -114,7 +114,7 @@ $image = magic_posts('Profile');
  ```
 
 ```php
-foreach(magic_posts('Album') as $image) {}
+foreach(magic_posts('Album') as $image)
  ```
  
  ```php
