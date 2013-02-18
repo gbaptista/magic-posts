@@ -3,7 +3,7 @@ Contributors: gbaptistas
 Tags: custom posts, custom fields, custom taxonomies
 Requires at least: 3.0.1
 Tested up to: 3.4
-Stable tag: 0.0.3
+Stable tag: 0.0.4
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -36,6 +36,9 @@ See: https://github.com/gbaptista/magic-posts
 = 0.0.3 =
 * New magic_posts() metadata retriever.
 
+= 0.0.4 =
+* Retrieve WordPress media with new Magic_Posts_Image class.
+
 == Upgrade Notice ==
 
 = 0.0.2 =
@@ -46,3 +49,6 @@ See: https://github.com/gbaptista/magic-posts
 = 0.0.3 =
 * WARNING: Upgrade from 0.0.1 or 0.0.2 will cause loss of all Magic Posts metadata.
 * New magic_posts() metadata retriever.
+
+= 0.0.4 =
+* Retrieve WordPress media with new Magic_Posts_Image class.

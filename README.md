@@ -1,4 +1,4 @@
-Magic Posts 0.0.3
+Magic Posts 0.0.4
 --------
 
 Create [Custom Post Types](http://codex.wordpress.org/Post_Types#Custom_Types) with simple [scaffolds](http://en.wikipedia.org/wiki/Scaffold_\(programming\)).
@@ -7,6 +7,8 @@ Download: [http://wordpress.org/extend/plugins/magic-posts/](http://wordpress.or
 
 * [Scaffolding](#scaffolding)
 * [Retrieving Data](#retrieving-data)
+* [Retrieving Images](#retrieving-images)
+* [Image Data Reference](#image-data-reference)
 * [Command Reference](#command-reference)
 * [Custom Post Types Features](#custom-post-types-features)
 * [Demos](#demos)
@@ -18,6 +20,10 @@ Scaffolding
 
 ```bash
 Product Price:string 'In Stock':string Shipping:string Description:editor
+```
+
+```bash
+Travel Album:gallery[150x150:crop, 800x600, 1024x768] Profile:image[200x200:crop]
 ```
 
 ```bash
@@ -45,34 +51,125 @@ Retrieving Data
 --------
 
 ```bash
-Article Name:string Photo:image 'My Travel Photos':gallery
+Article Name:string
 ```
 
 ### Current Post
 ```html
 <h4><?php echo magic_posts('Name'); ?></h4>
-
-<img src="<?php echo magic_posts('Photo')->url; ?>" width="50" height="50" />
-
-<ul>
-  <?php foreach(magic_posts('My Travel Photos') as $photo) { ?>
-    <li><img src="<?php echo $photo->url; ?>" width="50" height="50" /></li>
-  <?php } ?>
-</ul>
 ```
 
 ### Post ID
 ```html
 <h4><?php echo magic_posts(137, 'Name'); ?></h4>
-
-<img src="<?php echo magic_posts(137, 'Photo')->url; ?>" width="50" height="50" />
-
-<ul>
-  <?php foreach(magic_posts(137, 'My Travel Photos') as $photo) { ?>
-    <li><img src="<?php echo $photo->url; ?>" width="50" height="50" /></li>
-  <?php } ?>
-</ul>
 ```
+
+Retrieving Images
+--------
+
+```bash
+Travel Album:gallery[150x150:crop, 800x600, 1024x768] Profile:image[200x200:crop]
+```
+
+### Current Post
+
+```html
+<?php $image = magic_posts('Profile'); ?>
+ 
+<img src="<?php echo $image->url('200x200:crop'); ?>" alt="<?php echo $image->alt(); ?>" />
+```
+
+```html
+<?php foreach(magic_posts('Album') as $image) { ?>
+
+  <a target="_blank" href="<?php echo $image->url('800x600'); ?>">
+    <img src="<?php echo $image->url('150x150:crop'); ?>" alt="<?php echo $image->alt(); ?>" />
+  </a>
+
+  <br />
+
+<?php } ?>
+ ```
+
+### Post ID
+```php
+$image = magic_posts(169, 'Profile');
+```
+
+```php
+foreach(magic_posts(169, 'Album') as $image)
+ ```
+
+Image Data Reference
+--------
+
+```bash
+Travel Profile:image Album:gallery
+```
+
+```php
+$image = magic_posts('Profile');
+ ```
+
+```php
+foreach(magic_posts('Album') as $image) {}
+ ```
+ 
+ ```php
+echo $image->url() . '<br />';
+
+echo $image->url('800x600') . '<br />';
+
+echo $image->url('100x100:crop') . '<br />';
+
+echo $image->id() . '<br />';
+
+echo $image->title() . '<br />';
+
+echo $image->legend() . '<br />';
+
+echo $image->alt() . '<br />';
+
+echo $image->description() . '<br />';
+
+print_r($image->post());
+
+echo $image->post('ID') . '<br />';
+/*
+  All [post] attributes:
+    ID, post_author, post_date, post_date_gmt, post_content, post_title,
+    post_excerpt, post_status, comment_status, ping_status, post_password,
+    post_name, to_ping, pinged, post_modified, post_modified_gmt,
+    post_content_filtered, post_parent, guid, menu_order, post_type,
+    post_mime_type, comment_count, filter
+*/
+
+print_r($image->post_meta());
+
+echo $image->post_meta('_wp_attachment_image_alt') . '<br />';
+/*
+  All [post_meta] attributes:
+    _wp_attached_file, _wp_attachment_metadata,
+    _wp_attachment_image_alt, _edit_lock
+*/
+
+print_r($image->metadata());
+
+echo $image->metadata('height') . '<br />';
+/*
+  All [metadata] attributes:
+    width, height, file, sizes, image_meta
+*/
+
+print_r($image->image_meta());
+
+echo $image->image_meta('focal_length') . '<br />';
+/*
+  All [image_meta] attributes:
+    aperture, credit, camera, caption, created_timestamp,
+    copyright, focal_length, iso, shutter_speed, title
+*/
+ ```
 
 Command Reference
 --------
@@ -86,7 +183,9 @@ Command | Description
 `'My Field':editor` | Custom Wordpress Editor.
 `'My Field':mini-editor` | Custom Wordpress Mini-Editor (teeny).
 `'My Field':image` | Unique image from Media Library.
+`'My Field':image[100x100:crop, 800x600]` | Unique image custom sizes.
 `'My Field':gallery` | Multiple images from Media Library.
+`'My Field':gallery[80x70:crop, 500x400, 10x20:crop]` | Multiple images custom sizes.
 
 Custom Post Types Features
 --------

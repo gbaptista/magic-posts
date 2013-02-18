@@ -8,8 +8,14 @@ jQuery(document).ready(function() {
 
       var media_html = '';
 
+      // [todo] Get the thumbnail, not the master blaster larger 1280x800 version...
+      var image_url = image.url;
+
+      // Nice try! But not today...
+      // image_url = image_url.replace('1280x800.', '380x187.');
+
       media_html += '<div>';
-        media_html += '<img src="' + image.url + '" />';
+        media_html += '<img src="' + image_url + '" />';
         media_html += '<a class="m-p-m-b-img-remove m-p-m-b-img-' + image.id + '" href="javascript:void(0);">remove</a>';
       media_html += '</div>';
 

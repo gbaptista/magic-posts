@@ -3,7 +3,7 @@
 Magic_Posts::instance()->inject(
 
   'retrieve_metas', function($id) {
-
+    
     if(empty(Magic_Posts::instance()->metas[$id]))
     {
 
@@ -49,7 +49,16 @@ Magic_Posts::instance()->inject(
       $value = $meta['value'];
 
       if(in_array($meta['type'], array('gallery', 'image')))
+      {
+
         $value = json_decode($value);
+
+        if(is_array($value))
+        {
+          foreach ($value as $i => $v) $value[$i] = new Magic_Posts_Image($v->id);
+        } else $value = new Magic_Posts_Image($value->id);
+
+      }
 
       elseif(in_array($meta['type'], array('text', 'editor', 'mini-editor')))
         $value = wpautop($value);

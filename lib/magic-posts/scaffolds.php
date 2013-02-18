@@ -27,6 +27,15 @@ Magic_Posts::instance()->inject(
 
     if(empty($scaffold)) return FALSE;
 
+    if(preg_match_all('/\[.*?\]/', $scaffold, $replaces))
+    {
+      foreach ($replaces as $replace_match) {
+        foreach ($replace_match as $replace) {
+          $scaffold = str_replace($replace, preg_replace('/\s{1,}/', '', $replace), $scaffold);
+        }
+      }
+    }
+
     $title = preg_split('/\s{1,}/', $scaffold);
     $title = $title[0];
 
@@ -46,6 +55,22 @@ Magic_Posts::instance()->inject(
 
         elseif(preg_match('/^".*"$/', $field[0]))
           $field[0] = preg_replace('/^"|"$/', '', $field[0]);
+
+        if(count($field) > 2) {
+          $field = array(
+            $field[0], implode(':', array_slice($field, 1, count($field)-1))
+          );
+        }
+
+        if(preg_match('/\[.*\]/', $field[1], $options))
+        {
+          $field[1] = str_replace($options[0], '', $field[1]);
+          $field[2] = preg_replace('/^\[|\]$/', '', $options[0]);
+
+          if(in_array($field[1], Magic_Posts::instance()->meta_box_types_images))
+            Magic_Posts::instance()->image_sizes($field[2]);
+
+        }
 
         $fields[] = $field;
 

@@ -4,7 +4,7 @@
 Plugin Name: Magic Posts
 Plugin URI: http://wordpress.org/extend/plugins/magic-posts/
 Description: Create Custom Post Types with simple scaffolds.
-Version: 0.0.3
+Version: 0.0.4
 Author: Guilherme Baptista
 Author URI: http://gbaptista.com
 License: MIT

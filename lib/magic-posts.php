@@ -8,6 +8,10 @@ if(!class_exists('Magic_Posts')) {
       'string', 'text', 'editor', 'mini-editor', 'image', 'gallery'
     );
 
+    public $meta_box_types_images = array(
+      'image', 'gallery'
+    );
+
     public $custom_posts_supports = array(
       'title'           => TRUE,
       'editor'          => FALSE,
@@ -111,6 +115,7 @@ if(!class_exists('Magic_Posts')) {
   {
 
     require_once('magic-posts/settings.php');
+    require_once('magic-posts/images.php');
     require_once('magic-posts/scaffolds.php');
     require_once('magic-posts/custom-posts.php');
     require_once('magic-posts/meta-boxes.php');
@@ -123,6 +128,7 @@ if(!class_exists('Magic_Posts')) {
   elseif(function_exists('is_admin'))
   {
 
+    require_once('magic-posts/images.php');
     require_once('magic-posts/scaffolds.php');
     require_once('magic-posts/custom-posts.php');
     require_once('magic-posts/retrieve-meta.php');
