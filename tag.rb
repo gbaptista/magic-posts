@@ -12,12 +12,12 @@ tag   = trunk.gsub(/trunk$/, 'tags/'+ARGV.first)
 
 if ARGV[1] == 'git'
 
-  puts "git tag -a #{ARGV.first} -m \"Magic Posts #{ARGV.first}\""
+  system("git tag -a #{ARGV.first} -m \"Magic Posts #{ARGV.first}\"")
 
 elsif ARGV[1] == 'svn'
 
-  puts "svn add tags/#{ARGV.first}/*"
-  puts "svn ci -m \"tagging version #{ARGV.first}\""
+  system("svn add tags/#{ARGV.first}/*")
+  system("svn ci -m \"tagging version #{ARGV.first}\"")
 
 elsif ARGV[1] == 'tag'
 
