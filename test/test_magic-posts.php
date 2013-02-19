@@ -12,6 +12,11 @@ class Magic_Posts_Test extends PHPUnit_Framework_TestCase
   {
 
     $this->assertEquals(
+      'Celebrities',
+      Magic_Posts_Inflector::instance()->pluralize('Celebrity', 'en')
+    );
+
+    $this->assertEquals(
       'Carrões',
       Magic_Posts_Inflector::instance()->pluralize('Carrão', 'pt')
     );

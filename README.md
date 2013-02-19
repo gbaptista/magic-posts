@@ -33,7 +33,7 @@ Product Price:string 'In Stock':string Shipping:string Description:editor
 ```
 
 ```bash
-Travel Album:gallery[150x150:crop, 800x600, 1024x768] Profile:image[200x200:crop]
+Celebrity Profile:image[200x200:crop] Album:gallery[150x150:crop, 800x600, 1024x768]
 ```
 
 ```bash
