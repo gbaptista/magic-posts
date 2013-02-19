@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# Use:
 # cd /media/gbaptista/server/projects/svn/wordpress/magic-posts/
 # bash trunk/tag.sh 0.0.5
 

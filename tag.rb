@@ -2,7 +2,6 @@
 
 require 'fileutils'
 
-# Use:
 # ruby tag.rb 0.0.5 tag
 # ruby tag.rb 0.0.5 svn
 # ruby tag.rb 0.0.5 git
@@ -43,8 +42,8 @@ elsif ARGV[1] == 'tag'
     tag + '/.git',
     tag + '/.svn',
     tag + '/README.md',
-    tag + '/svn_tag.rb',
-    tag + '/svn_tag.sh',
+    tag + '/tag.rb',
+    tag + '/tag.sh',
     tag + '/.gitignore',
   ].each do |remove|
     if File.exists? remove
