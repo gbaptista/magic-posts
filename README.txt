@@ -16,14 +16,12 @@ Create Custom Post Types and Custom Fields with scaffolds.
 See: https://github.com/gbaptista/magic-posts#readme
 
 Supported Posts:
-
 * Custom Post Types
 * All WordPress Default Posts
 * All WordPress Default Pages
 * Post ID, Page ID or Custom Post Type ID
 
 Supported Fields:
-
 * Text field.
 * Textarea field.
 * Custom Wordpress Editor.
