@@ -3,17 +3,82 @@
 require_once('lib/magic-posts.php');
 require_once('lib/magic-posts/images.php');
 require_once('lib/magic-posts/scaffolds.php');
+require_once('lib/magic-posts/inflector/magic_posts_inflector.php');
 
 class Magic_Posts_Test extends PHPUnit_Framework_TestCase
 {
+
+  public function test_inflector()
+  {
+
+    $this->assertEquals(
+      'Carrões',
+      Magic_Posts_Inflector::instance()->pluralize('Carrão', 'pt')
+    );
+
+    $this->assertEquals(
+      'Travel Photos',
+      Magic_Posts_Inflector::instance()->pluralize('Travel Photo', 'en')
+    );
+
+    $this->assertEquals(
+      'Houses',
+      Magic_Posts_Inflector::instance()->pluralize('House', 'en')
+    );
+
+    $this->assertEquals(
+      'My Awesome Galleries',
+      Magic_Posts_Inflector::instance()->pluralize('My Awesome Gallery', 'en')
+    );
+
+    $this->assertEquals(
+      'Últimas Notícias',
+      Magic_Posts_Inflector::instance()->pluralize('Última Notícia', 'pt')
+    );
+
+    $this->assertEquals(
+      'Awesome Galleries',
+      Magic_Posts_Inflector::instance()->pluralize('Awesome Gallery', 'en')
+    );
+
+    $this->assertEquals(
+      'Travel Albums',
+      Magic_Posts_Inflector::instance()->pluralize('Travel Album', 'en')
+    );
+    
+  }
 
   public function test_scaffold()
   {
 
     $debug = Magic_Posts::instance()->scaffold(
-      "[236] 'Imagens na Página':gallery[100x100:crop, 800x600] 'Capa':image[100x100:crop, 800x600, 900x600]"
+      '"Última Notícia " campo:string'
     );
-    //print_r($debug); exit;
+    #print_r($debug); exit;
+
+    $this->assertEquals(
+      array(
+        'title'   => 'Última Notícia',
+        'fields'  =>  array(
+          array('campo', 'string')
+        )
+      ),
+      Magic_Posts::instance()->scaffold(
+        '"Última Notícia " campo:string'
+      )
+    );
+
+    $this->assertEquals(
+      array(
+        'title'   => 'Última Notícia',
+        'fields'  =>  array(
+          array('campo', 'string')
+        )
+      ),
+      Magic_Posts::instance()->scaffold(
+        "'Última Notícia' campo:string"
+      )
+    );
 
     $this->assertEquals(
       array(

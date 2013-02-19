@@ -36,8 +36,17 @@ Magic_Posts::instance()->inject(
       }
     }
 
-    $title = preg_split('/\s{1,}/', $scaffold);
-    $title = $title[0];
+    preg_match('/\'.*\'\s|\".*\"\s/', $scaffold, $title);
+    if(empty($title)) $title = preg_split('/\s{1,}/', $scaffold);
+
+    $title = trim($title[0]);
+
+
+    if(preg_match('/^\'.*\'$/', $title))
+      $title = trim(preg_replace('/^\'|\'$/', '', $title));
+
+    elseif(preg_match('/^".*"$/', $title))
+      $title = trim(preg_replace('/^"|"$/', '', $title));
 
     $fields = array();
 

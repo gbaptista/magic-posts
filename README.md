@@ -1,4 +1,4 @@
-Magic Posts 0.0.4
+Magic Posts 0.0.5
 --------
 
 Create [Custom Post Types](http://codex.wordpress.org/Post_Types#Custom_Types) with simple [scaffolds](http://en.wikipedia.org/wiki/Scaffold_\(programming\)).
@@ -21,7 +21,15 @@ Scaffolding
 ### Custom Post Types
 
 ```bash
+'Singular Term' description:mini-editor
+```
+
+```bash
 Product Price:string 'In Stock':string Shipping:string Description:editor
+```
+
+```bash
+'Travel Album' photos:gallery
 ```
 
 ```bash

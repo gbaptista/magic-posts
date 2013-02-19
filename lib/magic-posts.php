@@ -110,14 +110,20 @@ if(!class_exists('Magic_Posts')) {
 
   }
 
+  // Plugin
+  if(function_exists('is_admin'))
+  {
+    require_once('magic-posts/images.php');
+    require_once('magic-posts/scaffolds.php');
+    require_once('magic-posts/inflector/magic_posts_inflector.php');
+    require_once('magic-posts/custom-posts.php');
+  }
+
   // Admin
   if(function_exists('is_admin') && is_admin())
   {
 
     require_once('magic-posts/settings.php');
-    require_once('magic-posts/images.php');
-    require_once('magic-posts/scaffolds.php');
-    require_once('magic-posts/custom-posts.php');
     require_once('magic-posts/meta-boxes.php');
 
     Magic_Posts::instance()->admin();
@@ -128,9 +134,6 @@ if(!class_exists('Magic_Posts')) {
   elseif(function_exists('is_admin'))
   {
 
-    require_once('magic-posts/images.php');
-    require_once('magic-posts/scaffolds.php');
-    require_once('magic-posts/custom-posts.php');
     require_once('magic-posts/retrieve-meta.php');
 
     function magic_posts($key, $force_id=NULL) {

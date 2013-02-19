@@ -3,6 +3,9 @@
   font-size:16px; font-weight:bold; color:#666;
 }
 
+#magic-posts .magic-posts-locale { padding:16px 0 0 1px; }
+#magic-posts .magic-posts-locale label { padding:0 6px; }
+
 .m-p-m-b-editor .wp-editor-container, .m-p-m-b-mini-editor,
 .wp-editor-container { background-color:#FFF; }
 

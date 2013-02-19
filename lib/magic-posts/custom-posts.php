@@ -27,9 +27,11 @@ Magic_Posts::instance()->inject(
     if(!preg_match('/\[[0-9]{1,}\]/', $title) && $title != '[post]' && $title != '[page]')
     {
 
-      # [todo] Smart pluralize and l18n.
+      $locale = get_option('magic-posts_locale');
+      if(empty($locale)) $locale = 'en';
+
       $singular = $title;
-      $plural   = $title.'s';
+      $plural   = Magic_Posts_Inflector::instance()->pluralize($singular, $locale);
       $labels = array(
         'name'                => __($plural),
         'singular_name'       => __($singular),

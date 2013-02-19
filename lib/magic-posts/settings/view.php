@@ -10,6 +10,16 @@
 
     <textarea name="scaffolds" class="scaffolds"><?php echo stripslashes($scaffolds); ?></textarea>
 
+    <div class="magic-posts-locale">
+      Language:
+      <label>
+        <input type="radio" name="locale" value="en" <?php if($locale == 'en') echo 'checked="checked"'; ?> /> English
+      </label>
+      <label>
+        <input type="radio" name="locale" value="pt" <?php if($locale == 'pt') echo 'checked="checked"'; ?> /> Português
+      </label>
+    </div>
+
     <?php submit_button(); ?>
 
   </form>

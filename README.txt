@@ -3,7 +3,7 @@ Contributors: gbaptistas
 Tags: custom posts, custom fields, custom taxonomies
 Requires at least: 3.0.1
 Tested up to: 3.4
-Stable tag: 0.0.4
+Stable tag: 0.0.5
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -39,6 +39,9 @@ See: https://github.com/gbaptista/magic-posts
 = 0.0.4 =
 * Retrieve WordPress media with new Magic_Posts_Image class.
 
+= 0.0.5 =
+* Inflection support.
+
 == Upgrade Notice ==
 
 = 0.0.2 =
@@ -52,3 +55,6 @@ See: https://github.com/gbaptista/magic-posts
 
 = 0.0.4 =
 * Retrieve WordPress media with new Magic_Posts_Image class.
+
+= 0.0.5 =
+* Inflection support.
