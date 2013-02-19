@@ -1,23 +1,35 @@
 === Magic Posts ===
 Contributors: gbaptistas
-Tags: custom posts, custom fields, custom taxonomies
+Tags: custom posts, custom fields, custom taxonomies, scaffold, scaffolding, images, gallery
 Requires at least: 3.0.1
 Tested up to: 3.4
 Stable tag: 0.0.5
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
-Create Custom Post Types with simple scaffolds.
+Create Custom Post Types and Custom Fields with scaffolds.
 
 == Description ==
 
-Create Custom Post Types with simple scaffolds.
+Create Custom Post Types and Custom Fields with scaffolds.
 
-See: https://github.com/gbaptista/magic-posts
+* Custom Post Types
+* All WordPress Default Posts
+* All WordPress Default Pages
+* Post ID, Page ID or Custom Post Type ID
+
+* Text field.
+* Textarea field.
+* Custom Wordpress Editor.
+* Custom Wordpress Mini-Editor (teeny).
+* Unique image from Media Library.
+* Multiple images from Media Library.
+
+See: https://github.com/gbaptista/magic-posts#readme
 
 == Installation ==
 
-See: https://github.com/gbaptista/magic-posts
+Install Magic Posts either via the WordPress.org plugin directory, or by uploading the files to your server.
 
 == Screenshots ==
 

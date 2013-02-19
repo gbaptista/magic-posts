@@ -1,7 +1,7 @@
 Magic Posts 0.0.5
 --------
 
-Create [Custom Post Types](http://codex.wordpress.org/Post_Types#Custom_Types) with simple [scaffolds](http://en.wikipedia.org/wiki/Scaffold_\(programming\)).
+Create [Custom Post Types](http://codex.wordpress.org/Post_Types) and [Custom Fields](http://codex.wordpress.org/Custom_Fields) with [scaffolds](http://en.wikipedia.org/wiki/Scaffold_\(programming\)).
 
 Download: [http://wordpress.org/extend/plugins/magic-posts/](http://wordpress.org/extend/plugins/magic-posts/)
 
