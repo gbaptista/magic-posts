@@ -11,17 +11,8 @@ License: MIT
 */
 
 /*
-
-  phpunit test/test_magic-posts.php
-
-  instance        site          init_custom_posts
-  admin           admin_menu
-  custom_posts    custom_post
-  meta_boxes      meta_box      save_meta_boxes
-  scaffolds       scaffold
-  retrieve_metas  retrieve_meta
-
-  magic_posts()
+  Running Tests:
+  phpunit --configuration test/magic-posts.xml
 
 */
 

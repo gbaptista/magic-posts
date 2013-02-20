@@ -1,6 +1,6 @@
 <?php
 
-include_once('helpers/meta-boxes.php');
+require_once('helpers/meta-boxes.php');
 
 Magic_Posts::instance()->inject(
 

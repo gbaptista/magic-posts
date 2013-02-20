@@ -1,0 +1,16 @@
+<phpunit>
+  <testsuites>
+    <testsuite name="Magic_Posts">
+      <file>test/test__magic-posts.php</file>
+      <file>test/test_custom-posts.php</file>
+      <file>test/test_dangerous.php</file>
+      <file>test/test_images.php</file>
+      <file>test/test_meta-boxes.php</file>
+      <file>test/test_migrations.php</file>
+      <file>test/test_retrieve-meta.php</file>
+      <file>test/test_scaffolds.php</file>
+      <file>test/test_settings.php</file>
+      <file>test/test_strings.php</file>
+    </testsuite>
+  </testsuites>
+</phpunit>

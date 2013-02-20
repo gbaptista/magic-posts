@@ -16,6 +16,6 @@ function Magic_Posts_Meta_Box($post, $args) {
 
   $field_value = get_post_meta($post->ID, '_m-p' . $args['args']['meta_box'], true);
 
-  include(__DIR__.'/meta-boxes/'.$type.'.php');
+  require(__DIR__.'/meta-boxes/'.$type.'.php');
 
 }

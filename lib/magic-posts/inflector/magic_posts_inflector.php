@@ -10,7 +10,7 @@
       [Inflector::]       to [Magic_Posts_CakePHP_Inflector::]
     *
     */
-  include_once('magic_posts_cakephp_inflector.php');
+  require_once('magic_posts_cakephp_inflector.php');
 
   class Magic_Posts_Inflector {
 

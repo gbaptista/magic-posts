@@ -66,6 +66,24 @@ Magic_Posts::instance()->inject(
 
 Magic_Posts::instance()->inject(
 
+  'migrations', function($migrations_texts) {
+    
+    if(empty($migrations_texts)) return FALSE;
+
+    $migrations_texts = explode("\n", $migrations_texts);
+
+    foreach($migrations_texts as $migrations_text) {
+      Magic_Posts::instance()->migrate(Magic_Posts::instance()->migration($migrations_text));
+    }
+
+    return TRUE;
+
+  }
+
+);
+
+Magic_Posts::instance()->inject(
+
   'migration', function($migration) {
 
     $migration = trim($migration);
@@ -157,25 +175,9 @@ Magic_Posts::instance()->inject(
 
 Magic_Posts::instance()->inject(
 
-  'migrations', function($migrations_texts) {
-    
-    if(empty($migrations_texts)) return FALSE;
-
-    $migrations_texts = explode("\n", $migrations_texts);
-
-    foreach($migrations_texts as $migrations_text) {
-      Magic_Posts::instance()->migrate(Magic_Posts::instance()->migration($migrations_text));
-    }
-
-    return TRUE;
-
-  }
-
-);
-
-Magic_Posts::instance()->inject(
-
   'migrate', function($migration) {
+
+    if(!function_exists('is_admin')) return NULL;
 
     if($migration)
     {
