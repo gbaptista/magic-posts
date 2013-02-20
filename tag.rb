@@ -34,7 +34,6 @@ elsif ARGV[1] == 'tag'
     tag + '/lib/.svn',
     tag + '/lib/magic-posts/.svn',
     tag + '/lib/magic-posts/helpers/.svn',
-    tag + '/lib/magic-posts/helpers/.svn',
     tag + '/lib/magic-posts/helpers/meta-boxes/.svn',
     tag + '/lib/magic-posts/inflector/.svn',
     tag + '/lib/magic-posts/settings/.svn',
