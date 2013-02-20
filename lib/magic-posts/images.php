@@ -122,9 +122,12 @@ Magic_Posts::instance()->inject(
 
       $size = explode('x', $size);
 
-      if(function_exists('sanitize_title'))
+      if(function_exists('is_admin'))
       {
-        add_image_size('m-p-'.sanitize_title($size_name), $size[0], $size[1], $crop);
+        add_image_size(
+          Magic_Posts::instance()->image_size($size_name),
+          $size[0], $size[1], $crop
+        );
       }
 
     }

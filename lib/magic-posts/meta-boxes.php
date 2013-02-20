@@ -29,7 +29,6 @@ Magic_Posts::instance()->inject(
       if(preg_match("/^$field_prefix-m-p\{/", $name)) {
 
         $name = '_'.str_replace($field_prefix.'-', '', $name);
-        //$value = sanitize_text_field($value);
 
         if(!add_post_meta($_POST['post_ID'], $name, $value, true))
           update_post_meta($_POST['post_ID'], $name, $value);
@@ -96,7 +95,7 @@ Magic_Posts::instance()->inject(
     if(!in_array($type, Magic_Posts::instance()->meta_box_types))
       return NULL;
 
-    $meta_box = '{' . sanitize_title($field) . '}' . $type;
+    $meta_box = Magic_Posts::instance()->field($field, $type);
 
     if($force_post_type) $post_type_set = $force_post_type;
     else $post_type_set = $post_type;

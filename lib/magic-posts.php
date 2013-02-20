@@ -69,7 +69,9 @@ if(!class_exists('Magic_Posts')) {
 
       function magic_posts_enqueue() {
 
-        $dir = array_reverse(explode('/', dirname(__FILE__)));
+        // Fix for Windows...
+        if(preg_match('/\//', dirname(__FILE__))) $dir = array_reverse(explode('/', dirname(__FILE__)));
+        else $dir = array_reverse(explode('\\', dirname(__FILE__)));
 
         if($dir[1] == 'trunk') $dir[1] = $dir[2];
 
@@ -114,15 +116,17 @@ if(!class_exists('Magic_Posts')) {
   if(function_exists('is_admin'))
   {
 
+    require_once('magic-posts/dangerous.php');
+    require_once('magic-posts/strings.php');
     require_once('magic-posts/images.php');
     require_once('magic-posts/scaffolds.php');
-    require_once('magic-posts/inflector/magic_posts_inflector.php');
     require_once('magic-posts/custom-posts.php');
 
     // Admin
     if(is_admin())
     {
 
+      require_once('magic-posts/migrations.php');
       require_once('magic-posts/settings.php');
       require_once('magic-posts/meta-boxes.php');
 

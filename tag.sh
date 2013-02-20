@@ -1,11 +1,10 @@
 #!/bin/bash
 
 # cd /media/gbaptista/server/projects/svn/wordpress/magic-posts/
-# bash trunk/tag.sh 0.0.5
+# bash trunk/tag.sh 0.0.0
 
 svn=$PWD
 trunk="$PWD/trunk"
-#trunk="/media/gbaptista/server/projects/$1"
 
 cd $trunk
 ruby tag.rb $1 tag

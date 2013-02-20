@@ -2,9 +2,9 @@
 
 require 'fileutils'
 
-# ruby tag.rb 0.0.5 tag
-# ruby tag.rb 0.0.5 svn
-# ruby tag.rb 0.0.5 git
+# ruby tag.rb 0.0.0 tag
+# ruby tag.rb 0.0.0 svn
+# ruby tag.rb 0.0.0 git
 
 trunk = Dir.pwd
 tag   = trunk.gsub(/trunk$/, 'tags/'+ARGV.first)

@@ -3,7 +3,7 @@
 Magic_Posts::instance()->inject(
   
   'custom_posts', function() {
-
+    
     $scaffolds = Magic_Posts::instance()->scaffolds(stripslashes(get_option('magic-posts_scaffolds')));
 
     Magic_Posts::instance()->custom_fields = array();
@@ -22,7 +22,7 @@ Magic_Posts::instance()->inject(
 
   'custom_post', function($title, $fields) {
 
-    $post_type = substr('m-p-'.sanitize_title($title), 0, 20);
+    $post_type = Magic_Posts::instance()->post_type($title);
 
     if(!preg_match('/\[[0-9]{1,}\]/', $title) && $title != '[post]' && $title != '[page]')
     {
@@ -31,7 +31,7 @@ Magic_Posts::instance()->inject(
       if(empty($locale)) $locale = 'en';
 
       $singular = $title;
-      $plural   = Magic_Posts_Inflector::instance()->pluralize($singular, $locale);
+      $plural   = Magic_Posts::instance()->pluralize($singular, $locale);
       $labels = array(
         'name'                => __($plural),
         'singular_name'       => __($singular),

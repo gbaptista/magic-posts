@@ -11,7 +11,7 @@ Magic_Posts::instance()->inject(
     $scaffolds = array();
 
     foreach($scaffolds_texts as $scaffolds_text) {
-      $scaffold = Magic_Posts::instance()->scaffold(trim($scaffolds_text));
+      $scaffold = Magic_Posts::instance()->scaffold($scaffolds_text);
       if($scaffold) $scaffolds[] = $scaffold;
     }
 
@@ -25,7 +25,9 @@ Magic_Posts::instance()->inject(
 
   'scaffold', function($scaffold) {
 
-    if(empty($scaffold)) return FALSE;
+    $scaffold = trim($scaffold);
+
+    if(empty($scaffold) || preg_match('/^#|^\/\//', $scaffold)) return FALSE;
 
     if(preg_match_all('/\[.*?\]/', $scaffold, $replaces))
     {
@@ -41,16 +43,12 @@ Magic_Posts::instance()->inject(
 
     $title = trim($title[0]);
 
+    $scaffold = preg_replace("/^$title\s{1,}/", '', $scaffold);
 
-    if(preg_match('/^\'.*\'$/', $title))
-      $title = trim(preg_replace('/^\'|\'$/', '', $title));
-
-    elseif(preg_match('/^".*"$/', $title))
-      $title = trim(preg_replace('/^"|"$/', '', $title));
+    $title = Magic_Posts::instance()->trim_quotes($title);
 
     $fields = array();
 
-    $scaffold = preg_replace("/^$title\s{1,}/", '', $scaffold);
     preg_match_all('/\'.*?\':\S{1,}|".*?":\S{1,}|\S{1,}:\S{1,}/', $scaffold, $fields_ar);
 
     foreach($fields_ar as $fields_m) {
@@ -59,11 +57,7 @@ Magic_Posts::instance()->inject(
 
         $field = explode(':', $field);
 
-        if(preg_match('/^\'.*\'$/', $field[0]))
-          $field[0] = preg_replace('/^\'|\'$/', '', $field[0]);
-
-        elseif(preg_match('/^".*"$/', $field[0]))
-          $field[0] = preg_replace('/^"|"$/', '', $field[0]);
+        $field[0] = Magic_Posts::instance()->trim_quotes($field[0]);
 
         if(count($field) > 2) {
           $field = array(

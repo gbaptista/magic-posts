@@ -2,7 +2,11 @@
 
   <?php screen_icon(); ?><h2>Magic Posts Settings</h2>
 
-  <form method="post">
+  <?php if(!empty($_GET['migrated'])) { ?>
+    <div id="message" class="updated below-h2"><p>Migrations executed!</p></div>
+  <?php } ?>
+
+  <form action="?page=magic-posts-settings" method="post" class="<?php if(!empty($_GET['migrated']) || !empty($_GET['updated'])) echo 'm-p-message'; ?>">
 
     <h2>Scaffolds:</h2>
 
@@ -17,6 +21,18 @@
       </label>
       <label>
         <input type="radio" name="locale" value="pt" <?php if($locale == 'pt') echo 'checked="checked"'; ?> /> Português
+      </label>
+    </div>
+
+    <h2>Migrations:</h2>
+
+    <em>Need help? See: <a href="https://github.com/gbaptista/magic-posts#migrations" target="_blank">https://github.com/gbaptista/magic-posts#migrations</a></em>
+
+    <textarea name="migrations" class="migrations"><?php echo stripslashes($migrations); ?></textarea>
+
+    <div class="run_migrations">
+      <label>
+        <input type="checkbox" name="run_migrations" value="true" /> Run Migrations
       </label>
     </div>
 

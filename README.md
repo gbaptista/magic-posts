@@ -1,4 +1,4 @@
-Magic Posts 0.0.5
+Magic Posts 0.0.6
 --------
 
 WordPress Plugin: Create [Custom Post Types](http://codex.wordpress.org/Post_Types) and [Custom Fields](http://codex.wordpress.org/Custom_Fields) with [scaffolds](http://en.wikipedia.org/wiki/Scaffold_\(programming\)).
@@ -11,6 +11,7 @@ Online Demo: [http://gbaptista.com/galeria-de-imagens/](http://gbaptista.com/gal
 * [Retrieving Data](#retrieving-data)
 * [Retrieving Images](#retrieving-images)
 * [Image Data Reference](#image-data-reference)
+* [Migrations](#migrations)
 * [Command Reference](#command-reference)
 * [Custom Post Types Features](#custom-post-types-features)
 * [Demos](#demos)
@@ -180,6 +181,21 @@ echo $image->image_meta('focal_length') . '<br />';
     copyright, focal_length, iso, shutter_speed, title
 */
  ```
+
+Migrations
+--------
+
+```bash
+'Old Post Type' => 'New Post Type'
+
+'Post Type' ['Old Field' => 'New Field', 'Old FieldB' => 'New FieldB']
+
+[136] [OldField => NewField]
+
+[post] [TheOldField => 'My NewField']
+
+[page] ['My OldField' => TheNewField]
+```
 
 Command Reference
 --------
