@@ -27,20 +27,11 @@ class RetrieveMeta_Test extends PHPUnit_Framework_TestCase
       )
     );
 
-    $this->assertEquals(
-      'Minha Galeria',
-      Magic_Posts::instance()->retrieve_meta('galeria')
-    );
+    $this->assertEquals('Minha Galeria', Magic_Posts::instance()->retrieve_meta('galeria'));
 
-    $this->assertEquals(
-      342,
-      Magic_Posts::instance()->retrieve_meta('capa')->id()
-    );
+    $this->assertEquals(342, Magic_Posts::instance()->retrieve_meta('capa')->id());
 
-    $this->assertEquals(
-      18,
-      count(Magic_Posts::instance()->retrieve_meta('imagens-na-pagina'))
-    );
+    $this->assertEquals(18, count(Magic_Posts::instance()->retrieve_meta('imagens-na-pagina')));
 
   }
 

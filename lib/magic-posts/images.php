@@ -40,43 +40,51 @@ class Magic_Posts_Image {
 
   public function id() { return $this->id; }
 
-  private $post = NULL;
-  private $post_meta = NULL;
-  private $metadata = NULL;
+  private $post       = NULL;
+  private $post_meta  = NULL;
+  private $metadata   = NULL;
 
   public function __construct($id) { $this->id = $id; }
 
   public function image_meta($key=NULL)
   {
+
     if(empty($this->metadata)) $this->metadata = wp_get_attachment_metadata($this->id);
-    
+
     if(empty($key)) return $this->metadata['image_meta'];
     else            return $this->metadata['image_meta'][$key];
+
   }
 
   public function metadata($key=NULL)
   {
+
     if(empty($this->metadata)) $this->metadata = wp_get_attachment_metadata($this->id);
-    
+
     if(empty($key)) return $this->metadata;
     else            return $this->metadata[$key];
+
   }
 
   public function post_meta($key=NULL, $i=0)
   {
+
     if(empty($this->post_meta)) $this->post_meta = get_post_meta($this->id);
 
     if(empty($key))     return $this->post_meta;
     elseif($i === NULL) return $this->post_meta[$key];
     else                return $this->post_meta[$key][$i];
+
   }
 
   public function post($key=NULL)
   {
+
     if(empty($this->post)) $this->post = (array) get_post($this->id);
 
     if(empty($key)) return $this->post;
     else            return $this->post[$key];
+
   }
 
   public function title()       { return $this->post('post_title'); }
@@ -86,26 +94,35 @@ class Magic_Posts_Image {
 
   public function url($size=NULL)
   {
-    if($size)
-    {
-      $image = wp_get_attachment_image_src($this->id, 'm-p-' . str_replace(':', '', $size));
-      if(!isset($image[0]) || empty($image[0]))
-      {
+
+    if($size) {
+
+      $image = wp_get_attachment_image_src($this->id, Magic_Posts::instance()->prefix() . str_replace(':', '', $size));
+
+      if(!isset($image[0]) || empty($image[0])) {
+
         $size = explode('x', $size);
         $image = wp_get_attachment_image_src($this->id, array($size[0],$size[1]));
         return $image[0];
+
       } else return $image[0];
+
     } else {
+
       $image = wp_get_attachment_image_src($this->id, array($size[0],$size[1]));
+
       return $image[0];
+
     }
+
   }
 
 }
 
 Magic_Posts::instance()->inject(
 
-  'image_sizes', function($sizes) {
+  'image_sizes', function($sizes)
+  {
 
     $sizes = explode(',', $sizes);
 
@@ -114,20 +131,23 @@ Magic_Posts::instance()->inject(
       $size_name = $size;
 
       $crop = FALSE;
-      if(preg_match_all('/:\S{1,}/', $size, $type))
-      {
+
+      if(preg_match_all('/:\S{1,}/', $size, $type)) {
+
         $size = str_replace($type[0][0], '', $size);
         if($type[0][0] == ':crop') $crop = TRUE;
+
       }
 
       $size = explode('x', $size);
 
-      if(function_exists('is_admin'))
-      {
+      if(function_exists('is_admin')) {
+
         add_image_size(
           Magic_Posts::instance()->image_size($size_name),
           $size[0], $size[1], $crop
         );
+
       }
 
     }

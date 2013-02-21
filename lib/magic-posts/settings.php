@@ -2,7 +2,8 @@
 
 Magic_Posts::instance()->inject(
 
-  'admin_menu', function() {
+  'admin_menu', function()
+  {
 
     function magic_posts_settings() {  
       if(!current_user_can('manage_options'))
@@ -18,9 +19,7 @@ Magic_Posts::instance()->inject(
         'Magic Posts Settings', 'Magic Posts',
         'manage_options', 'magic-posts-settings', 'magic_posts_settings'
       );
-    }
-
-    add_action('admin_menu', 'magic_posts_menu');
+    } add_action('admin_menu', 'magic_posts_menu');
 
   }
 

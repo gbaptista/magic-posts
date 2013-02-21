@@ -11,12 +11,14 @@ class Migrations_Test extends PHPUnit_Framework_TestCase
 
   public function test_migrations()
   {
+
     $this->assertEquals(
       TRUE,
       Magic_Posts::instance()->migrations(
         "[page] ['Nome da Galeria' => 'Galeria', 'Capa da Galeria' => 'Capa']"
       )
     );
+
   }
 
   public function test_migration()
@@ -109,7 +111,7 @@ class Migrations_Test extends PHPUnit_Framework_TestCase
       )
     );
 
-     $this->assertEquals(
+    $this->assertEquals(
       array(
         array('from' => 'Apartamento', 'to' => 'Imóvel - Apartamento'),
         array('from' => 'Apartamento 2', 'to' => 'Imóvel - Apartamento 2')

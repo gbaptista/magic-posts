@@ -10,12 +10,6 @@ Author URI: http://gbaptista.com
 License: MIT
 */
 
-/*
-  Running Tests:
-  phpunit --configuration test/magic-posts.xml
-
-*/
-
 require_once('lib/magic-posts.php');
 
 function Magic_Posts_plugin() { return Magic_Posts::instance(); }

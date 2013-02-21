@@ -1,10 +1,8 @@
 jQuery(document).ready(function() {
 
-  if(jQuery('.m-p-m-b-image').size() || jQuery('.m-p-m-b-gallery').size())
-  {
+  if(jQuery('.m-p-m-b-image').size() || jQuery('.m-p-m-b-gallery').size()) {
 
-    function Magic_Posts_media_append(media_show, image)
-    {
+    function Magic_Posts_media_append(media_show, image) {
 
       var media_html = '';
 
@@ -25,11 +23,9 @@ jQuery(document).ready(function() {
 
   }
 
-  if(jQuery('.m-p-m-b-image').size())
-  {
+  if(jQuery('.m-p-m-b-image').size()) {
 
-    function Magic_Posts_image_thumb(media_show, image)
-    {
+    function Magic_Posts_image_thumb(media_show, image) {
       jQuery(media_show).html('');
       Magic_Posts_media_append(media_show, image);
     }
@@ -65,7 +61,7 @@ jQuery(document).ready(function() {
 
         Magic_Posts_image_thumb(jQuery(area).find('.media_show'), image);
 
-        if(window.tb_remove) try { window.tb_remove(); } catch( e ) {}
+        if(window.tb_remove) try { window.tb_remove(); } catch(e) {}
 
         wp.media.editor.insert = original_insert;
         wp.media.editor.send.attachment = original_attachment;
@@ -76,11 +72,9 @@ jQuery(document).ready(function() {
 
   }
 
-  if(jQuery('.m-p-m-b-gallery').size())
-  {
+  if(jQuery('.m-p-m-b-gallery').size()) {
 
-    function Magic_Posts_gallery_thumb(media_show, images)
-    {
+    function Magic_Posts_gallery_thumb(media_show, images) {
       jQuery(media_show).html('');
       jQuery(images).each(function() {
         Magic_Posts_media_append(media_show, this);
@@ -157,7 +151,7 @@ jQuery(document).ready(function() {
 
         Magic_Posts_gallery_thumb(jQuery(area).find('.media_show'), images);
 
-        if(window.tb_remove) try { window.tb_remove(); } catch( e ) {}
+        if(window.tb_remove) try { window.tb_remove(); } catch(e) {}
 
         wp.media.editor.insert = original_insert;
 

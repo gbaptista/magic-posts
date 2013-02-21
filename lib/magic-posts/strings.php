@@ -2,7 +2,8 @@
 
 Magic_Posts::instance()->inject(
 
-  'pluralize', function($string, $lang) {
+  'pluralize', function($string, $lang)
+  {
 
     require_once('inflector/magic_posts_inflector.php');
 
@@ -14,7 +15,8 @@ Magic_Posts::instance()->inject(
 
 Magic_Posts::instance()->inject(
 
-  'trim_char', function($string, $chars) {
+  'trim_char', function($string, $chars)
+  {
 
     $string = trim($string);
 
@@ -33,7 +35,8 @@ Magic_Posts::instance()->inject(
 
 Magic_Posts::instance()->inject(
 
-  'trim_chars', function($string, $char_s, $char_e=NULL) {
+  'trim_chars', function($string, $char_s, $char_e=NULL)
+  {
 
     if(empty($char_e)) $char_e = $char_s;
 
@@ -45,7 +48,8 @@ Magic_Posts::instance()->inject(
 
 Magic_Posts::instance()->inject(
 
-  'trim_quotes', function($string) {
+  'trim_quotes', function($string)
+  {
 
     return Magic_Posts::instance()->trim_char($string, array('\'', '"'));
 

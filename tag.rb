@@ -1,10 +1,10 @@
 # encoding: utf-8
 
-require 'fileutils'
-
 # ruby tag.rb 0.0.0 tag
 # ruby tag.rb 0.0.0 svn
 # ruby tag.rb 0.0.0 git
+
+require 'fileutils'
 
 trunk = Dir.pwd
 tag   = trunk.gsub(/trunk$/, 'tags/'+ARGV.first)

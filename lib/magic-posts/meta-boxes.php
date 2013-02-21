@@ -4,7 +4,8 @@ require_once('helpers/meta-boxes.php');
 
 Magic_Posts::instance()->inject(
 
-  'save_meta_boxes', function() {
+  'save_meta_boxes', function()
+  {
 
     if(defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) return NULL;
 
@@ -26,7 +27,7 @@ Magic_Posts::instance()->inject(
 
     foreach($_POST as $name => $value) {
 
-      if(preg_match("/^$field_prefix-m-p\{/", $name)) {
+      if(preg_match("/^$field_prefix" . Magic_Posts::instance()->suffix() . "\{/", $name)) {
 
         $name = '_'.str_replace($field_prefix.'-', '', $name);
 
@@ -43,34 +44,54 @@ Magic_Posts::instance()->inject(
 
 Magic_Posts::instance()->inject(
 
-  'meta_boxes', function() {
+  'meta_boxes', function()
+  {
 
     foreach (Magic_Posts::instance()->custom_fields as $post_type) {
 
       // [todo] I think... We have a performance problem in this code...
       //        We are checking get_post_type thousand times!
 
-      // Current post-type:
-      if($post_type[0] == 'm-p-post' || $post_type[0] == 'm-p-page')
-      {
+      $prefix = Magic_Posts::instance()->prefix();
 
-        if(!empty($_GET['post_type']))  $force_post_type = $_GET['post_type'];
-        elseif(!empty($_GET['post']))   $force_post_type = get_post_type($_GET['post']);
-        elseif(basename($_SERVER['REQUEST_URI'], '.php') == 'post-new') $force_post_type = 'post';
-        $current_post_type = 'm-p-' . $force_post_type;
-      } elseif(preg_match('/m-p-[0-9]{1,}/', $post_type[0])) {
-        $current_post_type = 'm-p-' . $_GET['post'];
-        if(!empty($_GET['post_type']))  $force_post_type = $_GET['post_type'];
-        elseif(!empty($_GET['post']))   $force_post_type = get_post_type($_GET['post']);
+      // Current post-type:
+      if($post_type[0] == $prefix.'post' || $post_type[0] == $prefix.'page') {
+
+        if(!empty($_GET['post_type'])) 
+          $force_post_type = $_GET['post_type'];
+
+        elseif(!empty($_GET['post']))
+          $force_post_type = get_post_type($_GET['post']);
+
+        elseif(basename($_SERVER['REQUEST_URI'], '.php') == 'post-new')
+          $force_post_type = 'post';
+
+        $current_post_type = $prefix . $force_post_type;
+
+      } elseif(preg_match('/' . $prefix . '[0-9]{1,}/', $post_type[0])) {
+
+        $current_post_type = $prefix . $_GET['post'];
+
+        if(!empty($_GET['post_type']))
+          $force_post_type = $_GET['post_type'];
+
+        elseif(!empty($_GET['post']))
+          $force_post_type = get_post_type($_GET['post']);
+
       } else {
-        if(!empty($_GET['post_type']))  $current_post_type = $_GET['post_type'];
-        elseif(!empty($_GET['post']))   $current_post_type = get_post_type($_GET['post']);
+
+        if(!empty($_GET['post_type']))
+          $current_post_type = $_GET['post_type'];
+
+        elseif(!empty($_GET['post']))
+          $current_post_type = get_post_type($_GET['post']);
+
         $force_post_type = NULL;
+
       }
 
       // Just load if needed:
-      if($current_post_type == $post_type[0])
-      {
+      if($current_post_type == $post_type[0]) {
 
         Magic_Posts::instance()->current_custom_fields = $post_type[1];
 
@@ -90,21 +111,23 @@ Magic_Posts::instance()->inject(
 
 Magic_Posts::instance()->inject(
 
-  'meta_box', function($post_type, $field, $type, $force_post_type=NULL) {
+  'meta_box', function($post_type, $field, $type, $force_post_type=NULL)
+  {
 
     if(!in_array($type, Magic_Posts::instance()->meta_box_types))
       return NULL;
 
     $meta_box = Magic_Posts::instance()->field($field, $type);
 
-    if($force_post_type) $post_type_set = $force_post_type;
-    else $post_type_set = $post_type;
+    if($force_post_type)
+      $post_type_set = $force_post_type;
+    else
+      $post_type_set = $post_type;
 
     add_meta_box(
-      $meta_box,
-      __($field),
-      'Magic_Posts_Meta_Box',
-      $post_type_set, 'advanced', 'default', array(
+      $meta_box, $field, 'Magic_Posts_Meta_Box',
+      $post_type_set, 'advanced', 'default',
+      array(
         'post_type' => $post_type,
         'field'     => $field,
         'type'      => $type,

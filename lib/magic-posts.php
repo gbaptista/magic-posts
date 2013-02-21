@@ -81,8 +81,7 @@ if(!class_exists('Magic_Posts')) {
         wp_register_style('magic-posts-css', plugins_url($dir[1].'/css/magic-posts.css?v=0.0.6'));
         wp_enqueue_style('magic-posts-css');
 
-      }
-      add_action('admin_enqueue_scripts', 'magic_posts_enqueue');
+      } add_action('admin_enqueue_scripts', 'magic_posts_enqueue');
 
       function magic_posts_links($links, $file) {
         if(basename($file) == basename(__FILE__)) {
@@ -90,8 +89,7 @@ if(!class_exists('Magic_Posts')) {
           array_push($links, '<a target="_blank" href="https://github.com/gbaptista/magic-posts#readme">Help</a>');
         }
         return $links;
-      }
-      add_filter('plugin_action_links', 'magic_posts_links', 10, 2);
+      } add_filter('plugin_action_links', 'magic_posts_links', 10, 2);
 
     }
 
@@ -101,6 +99,7 @@ if(!class_exists('Magic_Posts')) {
 
     public function __call($name, $args)
     {
+
       switch (count($args)) {
         case 1:   return $this->_methods[$name]($args[0]);
         case 2:   return $this->_methods[$name]($args[0], $args[1]);
@@ -108,13 +107,13 @@ if(!class_exists('Magic_Posts')) {
         case 4:   return $this->_methods[$name]($args[0], $args[1], $args[2], $args[3]);
         default:  return $this->_methods[$name]();
       }
+
     }
 
   }
 
   // Plugin
-  if(function_exists('is_admin'))
-  {
+  if(function_exists('is_admin')) {
 
     require_once('magic-posts/dangerous.php');
     require_once('magic-posts/strings.php');
@@ -123,8 +122,7 @@ if(!class_exists('Magic_Posts')) {
     require_once('magic-posts/custom-posts.php');
 
     // Admin
-    if(is_admin())
-    {
+    if(is_admin()) {
 
       require_once('magic-posts/migrations.php');
       require_once('magic-posts/settings.php');
@@ -135,8 +133,7 @@ if(!class_exists('Magic_Posts')) {
     }
 
     // Site
-    else
-    {
+    else {
 
       require_once('magic-posts/retrieve-meta.php');
 

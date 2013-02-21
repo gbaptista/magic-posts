@@ -5,7 +5,7 @@ WordPress Plugin: Create [Custom Post Types](http://codex.wordpress.org/Post_Typ
 
 Download: [http://wordpress.org/extend/plugins/magic-posts/](http://wordpress.org/extend/plugins/magic-posts/)
 
-Online Demo: [http://gbaptista.com/galeria-de-imagens/](http://gbaptista.com/galeria-de-imagens/)
+Test suite: [test/#readme](test/#readme)
 
 * [Scaffolding](#scaffolding)
 * [Retrieving Data](#retrieving-data)
@@ -237,3 +237,5 @@ Demos
 ![Magic Posts](http://gbaptista.com/images/m-p-01-s-b.png "Magic Posts")
 ![Magic Posts](http://gbaptista.com/images/m-p-02-s.png "Magic Posts")
 ![Magic Posts](http://gbaptista.com/images/m-p-03-s.png "Magic Posts")
+
+Online Demo: [http://gbaptista.com/galeria-de-imagens/](http://gbaptista.com/galeria-de-imagens/)

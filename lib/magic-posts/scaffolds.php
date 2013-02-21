@@ -2,7 +2,8 @@
 
 Magic_Posts::instance()->inject(
 
-  'scaffolds', function($scaffolds_texts) {
+  'scaffolds', function($scaffolds_texts)
+  {
 
     if(empty($scaffolds_texts)) return FALSE;
 
@@ -23,7 +24,8 @@ Magic_Posts::instance()->inject(
 
 Magic_Posts::instance()->inject(
 
-  'scaffold', function($scaffold) {
+  'scaffold', function($scaffold)
+  {
 
     $scaffold = trim($scaffold);
 
@@ -65,8 +67,8 @@ Magic_Posts::instance()->inject(
           );
         }
 
-        if(preg_match('/\[.*\]/', $field[1], $options))
-        {
+        if(preg_match('/\[.*\]/', $field[1], $options)) {
+
           $field[1] = str_replace($options[0], '', $field[1]);
           $field[2] = preg_replace('/^\[|\]$/', '', $options[0]);
 
