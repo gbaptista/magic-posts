@@ -57,3 +57,5 @@ Run:
 ```bash
 rspec test/spec
 ```
+
+[![Tests running!](http://gbaptista.com/images/youtube-tests.png)](https://www.youtube.com/watch?v=hXT9XTZsPOU)
