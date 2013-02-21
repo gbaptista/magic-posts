@@ -4,7 +4,7 @@ feature 'Settings' do
 
   scenario 'Create and Update Settings' do
 
-    mp_update_files
+    mp_update_files if update_files
     
     wp_login
 

@@ -11,6 +11,10 @@ module WordPressHelper
     true
   end
 
+  def update_files
+    true
+  end
+
   def mysql_config
     {
       'db_name'     => 'test-magic-posts',

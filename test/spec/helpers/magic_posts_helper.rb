@@ -35,7 +35,16 @@ module MagicPostsHelper
       mp_folder + '/lib/magic-posts/helpers/meta-boxes/.svn',
       mp_folder + '/lib/magic-posts/inflector/.svn',
       mp_folder + '/lib/magic-posts/settings/.svn',
-      mp_folder + '/test/.svn',
+      mp_folder + '/test',
+      mp_folder + '/.svn',
+      mp_folder + '/.git',
+      mp_folder + '/.gitignore',
+      mp_folder + '/.gitmodules',
+      mp_folder + '/Gemfile',
+      mp_folder + '/Gemfile.lock',
+      mp_folder + '/README.md',
+      mp_folder + '/tag.rb',
+      mp_folder + '/tag.sh'
     ].each do |remove|
       if File.exists? remove
         if File.directory?(remove)

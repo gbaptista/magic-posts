@@ -4,7 +4,7 @@ feature 'Custom Posts' do
 
   scenario 'Create Custom Posts' do
 
-    mp_update_files
+    mp_update_files if update_files
     
     wp_login
 
