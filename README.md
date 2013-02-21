@@ -5,8 +5,7 @@ WordPress Plugin: Create [Custom Post Types](http://codex.wordpress.org/Post_Typ
 
 Download: [http://wordpress.org/extend/plugins/magic-posts/](http://wordpress.org/extend/plugins/magic-posts/)
 
-Test suite: [test/#readme](test/#readme)
-
+* [Test Suite](test/#readme)
 * [Scaffolding](#scaffolding)
 * [Retrieving Data](#retrieving-data)
 * [Retrieving Images](#retrieving-images)
