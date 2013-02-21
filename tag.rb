@@ -37,13 +37,16 @@ elsif ARGV[1] == 'tag'
     tag + '/lib/magic-posts/helpers/meta-boxes/.svn',
     tag + '/lib/magic-posts/inflector/.svn',
     tag + '/lib/magic-posts/settings/.svn',
-    tag + '/test/.svn',
-    tag + '/.git',
+    tag + '/test',
     tag + '/.svn',
+    tag + '/.git',
+    tag + '/.gitignore',
+    tag + '/.gitmodules',
+    tag + '/Gemfile',
+    tag + '/Gemfile.lock',
     tag + '/README.md',
     tag + '/tag.rb',
-    tag + '/tag.sh',
-    tag + '/.gitignore',
+    tag + '/tag.sh'
   ].each do |remove|
     if File.exists? remove
       if File.directory?(remove)

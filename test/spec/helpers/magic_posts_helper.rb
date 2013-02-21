@@ -10,13 +10,6 @@ module MagicPostsHelper
 
     end
 
-    within('#magic-posts') do
-
-      page.should have_selector 'textarea[name=scaffolds]'
-      page.should have_selector 'textarea[name=migrations]'
-
-    end
-
   end
 
   def mp_update_files

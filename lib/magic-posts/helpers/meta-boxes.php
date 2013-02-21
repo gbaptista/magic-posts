@@ -12,9 +12,9 @@ function Magic_Posts_Meta_Box($post, $args) {
   // [todo] Just for the first...
   wp_nonce_field($plugin_folder, 'magic_posts_data');
 
-  $field_name = wp_create_nonce($plugin_folder) . Magic_Posts::instance()->field_name($args['args']['meta_box']);
-  
-  $field_value = get_post_meta($post->ID, Magic_Posts::instance()->meta_prefix() . $args['args']['meta_box'], true);
+  $field_name = wp_create_nonce($plugin_folder) . $args['args']['meta_box'];
+
+  $field_value = get_post_meta($post->ID, $args['args']['meta_box'], true);
 
   require(__DIR__.'/meta-boxes/'.$type.'.php');
 

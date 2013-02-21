@@ -1,4 +1,21 @@
 module WordPressHelper
+
+  def wp_login
+
+    visit '/wp-admin'
+
+    within('#loginform') do
+
+      sleep(0.2)
+
+      find('#user_login').set('admin')
+      find('#user_pass').set('123')
+
+      find('#wp-submit').click
+
+    end
+
+  end
   
   def wp_install
 
@@ -52,23 +69,6 @@ module WordPressHelper
       find('#admin_email').set('test@gmail.com')
 
       find('input[type=submit]').click
-
-    end
-
-  end
-
-  def wp_login
-
-    visit '/wp-admin'
-
-    within('#loginform') do
-
-      sleep(0.2)
-
-      find('#user_login').set('admin')
-      find('#user_pass').set('123')
-
-      find('#wp-submit').click
 
     end
 

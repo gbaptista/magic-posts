@@ -27,9 +27,9 @@ Magic_Posts::instance()->inject(
 
     foreach($_POST as $name => $value) {
 
-      if(preg_match("/^$field_prefix" . Magic_Posts::instance()->suffix() . "\{/", $name)) {
+      if(preg_match("/^$field_prefix" . Magic_Posts::instance()->meta_prefix() . "\{/", $name)) {
 
-        $name = '_'.str_replace($field_prefix.'-', '', $name);
+        $name = '_'.str_replace($field_prefix.'_', '', $name);
 
         if(!add_post_meta($_POST['post_ID'], $name, $value, true))
           update_post_meta($_POST['post_ID'], $name, $value);
@@ -119,13 +119,15 @@ Magic_Posts::instance()->inject(
 
     $meta_box = Magic_Posts::instance()->field($field, $type);
 
+    $meta_box_name = Magic_Posts::instance()->to_slug('m-p-'.$field.'-'.$type);
+
     if($force_post_type)
       $post_type_set = $force_post_type;
     else
       $post_type_set = $post_type;
 
     add_meta_box(
-      $meta_box, $field, 'Magic_Posts_Meta_Box',
+      $meta_box_name, $field, 'Magic_Posts_Meta_Box',
       $post_type_set, 'advanced', 'default',
       array(
         'post_type' => $post_type,

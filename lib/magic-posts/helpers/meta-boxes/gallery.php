@@ -9,7 +9,7 @@
 
   <div class="media_show"></div>
 
-  <input type="hidden" class="medias_url" name="<?php echo $field_name; ?>" value='<?php echo $field_value; ?>' />
+  <input type="hidden" class="input-entry medias_url" name="<?php echo $field_name; ?>" value='<?php echo $field_value; ?>' />
 
   <div class="temp_medias"></div>
 

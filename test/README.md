@@ -3,8 +3,8 @@ Magic Posts Test Suite
 
 ## [PHPUnit](https://github.com/sebastianbergmann/phpunit/)
 
-* install php
-* install phpunit
+* install [PHP](http://php.net/)
+* install [PHPUnit](https://github.com/sebastianbergmann/phpunit/)
 
 ### Running tests:
 ```bash
@@ -28,7 +28,7 @@ Edit your [hosts](http://en.wikipedia.org/wiki/Hosts_\(file\)) and server files:
 *http://test.magic-posts.local* **=>** *test/tmp/*
 
 MySQL Config: test/spec/config.rb
-```bash
+```ruby
 def mysql_config
   {
     'db_name'     => 'test-magic-posts',
@@ -47,7 +47,7 @@ rspec test/spec
 #### Skip Install Tests:
 
 Change run_install: test/spec/config.rb
-```bash
+```ruby
 def run_install
   false
 end
