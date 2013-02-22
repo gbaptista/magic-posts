@@ -19,6 +19,7 @@ phpunit --configuration test/phpunit/magic-posts.xml
 ### Setup
 
 ```bash
+git submodule init
 git submodule update
 gem install bundler
 bundle install
@@ -41,7 +42,7 @@ end
 
 ### Running Tests:
 ```bash
-rspec test/spec
+rspec test/spec --format documentation
 ```
 
 #### Skip Install Tests:

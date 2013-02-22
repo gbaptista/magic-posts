@@ -2,11 +2,13 @@ module WordPressHelper
 
   def wp_login
 
+    mp_update_files if update_files
+    
     visit '/wp-admin'
 
-    within('#loginform') do
+    page.should have_css '#loginform'
 
-      sleep(0.2)
+    within('#loginform') do
 
       find('#user_login').set('admin')
       find('#user_pass').set('123')
@@ -59,7 +61,7 @@ module WordPressHelper
     within('.wp-core-ui') do
       visit find('.step a')['href']
     end
-
+    
     within('#setup') do
 
       find('#weblog_title').set('Magic Posts Test Site')

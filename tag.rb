@@ -45,6 +45,7 @@ elsif ARGV[1] == 'tag'
     tag + '/Gemfile',
     tag + '/Gemfile.lock',
     tag + '/README.md',
+    tag + '/spec_loop.rb',
     tag + '/tag.rb',
     tag + '/tag.sh'
   ].each do |remove|

@@ -6,11 +6,7 @@ feature 'MagicPosts' do
 
     if run_install
 
-      mp_update_files
-      
-      wp_login
-
-      mp_install
+      wp_login; mp_install
 
     end
 

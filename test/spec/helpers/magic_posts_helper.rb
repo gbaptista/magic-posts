@@ -1,6 +1,52 @@
 module MagicPostsHelper
 
+  def mp_add_new type
+
+    within('#adminmenu #menu-posts-m-p-' + type) do
+
+      visit find_link('Add New')['href']
+
+    end
+
+  end
+
+  def mp_set_scaffolds scaffolds
+
+    wp_login
+
+    mp_settings
+
+    within('#magic-posts') do
+
+      find('textarea[name=scaffolds]').set(scaffolds)
+
+      find('input[type=submit]').click
+
+    end
+    
+    page.should have_content 'Settings saved.'
+
+  end
+
+  def mp_get_TinyMCE selector
+
+    within_frame find(selector + ' iframe')[:id] do
+      return page.evaluate_script("document.getElementById('tinymce').innerHTML")
+    end
+
+  end
+
+  def mp_set_TinyMCE selector, value
+
+    within_frame find(selector + ' iframe')[:id] do
+      page.execute_script("document.getElementById('tinymce').innerHTML = '<p>#{value}</p>';")
+    end
+
+  end
+
   def mp_settings
+
+    page.should have_css '#menu-settings'
 
     within('#menu-settings') do
 
@@ -64,7 +110,7 @@ module MagicPostsHelper
       visit find('#menu-plugins a.menu-top')['href']
 
     end
-
+    
     within('#magic-posts') do
 
       click_link 'Activate'

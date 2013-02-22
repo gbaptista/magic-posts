@@ -3,8 +3,6 @@ require './test/spec/config.rb'
 feature 'Settings' do
 
   scenario 'Create and Update Settings' do
-
-    mp_update_files if update_files
     
     wp_login
 
@@ -49,7 +47,7 @@ feature 'Settings' do
 
     end
 
-    mp_settings
+    mp_settings    
 
     within('#magic-posts') do
 
@@ -71,7 +69,7 @@ feature 'Settings' do
     end
 
     mp_settings
-
+    
     within('#magic-posts') do
 
       find('textarea[name=scaffolds]').value.should == ''

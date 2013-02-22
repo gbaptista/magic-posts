@@ -1,0 +1,1 @@
+(0..20).each { system('rspec test/spec'); }
