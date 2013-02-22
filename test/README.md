@@ -28,7 +28,7 @@ bundle install
 Edit your [hosts](http://en.wikipedia.org/wiki/Hosts_\(file\)) and server files:
 *http://test.magic-posts.local* **=>** *test/tmp/*
 
-MySQL Config: test/spec/config.rb
+MySQL Config: [test/spec/config.rb](spec/config.rb)
 ```ruby
 def mysql_config
   {
@@ -47,7 +47,7 @@ rspec test/spec --format documentation
 
 #### Skip Install Tests:
 
-Change run_install: test/spec/config.rb
+Change run_install: [test/spec/config.rb](spec/config.rb)
 ```ruby
 def run_install
   false
