@@ -31,6 +31,7 @@ Magic_Posts::instance()->inject(
 
         $name = '_'.str_replace($field_prefix.'_', '', $name);
 
+        # [todo] Don't create fields for empty values!
         if(!add_post_meta($_POST['post_ID'], $name, $value, true))
           update_post_meta($_POST['post_ID'], $name, $value);
 

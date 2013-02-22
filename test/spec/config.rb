@@ -32,12 +32,7 @@ RSpec.configure do |config|
   config.include MagicPostsHelper
 end
 
-#Capybara.register_driver :selenium do |app|
-#  Capybara::Selenium::Driver.new(app, :browser => :chrome)
-#end
-
 Capybara.default_wait_time  = 5
 Capybara.default_driver     = :selenium
-Capybara.javascript_driver  = :selenium
 
 Capybara.app_host = 'http://test.magic-posts.local'
