@@ -75,7 +75,7 @@ if(!class_exists('Magic_Posts')) {
 
         if($dir[1] == 'trunk') $dir[1] = $dir[2];
 
-        wp_register_script('magic-posts-js', plugins_url($dir[1].'/js/magic-posts.js?v=0.0.6'));
+        wp_register_script('magic-posts-js', plugins_url($dir[1].'/js/magic-posts-js.php?v=0.0.6'));
         wp_enqueue_script('magic-posts-js');
 
         wp_register_style('magic-posts-css', plugins_url($dir[1].'/css/magic-posts.css?v=0.0.6'));

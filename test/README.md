@@ -26,13 +26,15 @@ bundle install
 ```
 
 Edit your [hosts](http://en.wikipedia.org/wiki/Hosts_\(file\)) and server files:
-*http://test.magic-posts.local* **=>** *test/tmp/*
+
+* *http://test-a.magic-posts.local* **=>** *test/tmp/a*
+* *http://test-b.magic-posts.local* **=>** *test/tmp/b*
 
 MySQL Config: [test/spec/config.rb](spec/config.rb)
 ```ruby
 def mysql_config
   {
-    'db_name'     => 'test-magic-posts',
+    'db_name'     => 'test-magic-posts-'+TEST,
     'db_user'     => 'root',
     'db_password' => '',
     'db_host'     => 'localhost'
@@ -49,9 +51,7 @@ rspec test/spec --format documentation
 
 Change run_install: [test/spec/config.rb](spec/config.rb)
 ```ruby
-def run_install
-  false
-end
+RUN_INSTALL   = false
 ```
 
 Run:

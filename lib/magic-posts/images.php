@@ -97,19 +97,28 @@ class Magic_Posts_Image {
 
     if($size) {
 
-      $image = wp_get_attachment_image_src($this->id, Magic_Posts::instance()->prefix() . str_replace(':', '', $size));
+      if(!preg_match('/x/', $size)) {
 
-      if(!isset($image[0]) || empty($image[0])) {
-
-        $size = explode('x', $size);
-        $image = wp_get_attachment_image_src($this->id, array($size[0],$size[1]));
+        $image = wp_get_attachment_image_src($this->id, $size);
         return $image[0];
 
-      } else return $image[0];
+      } else {
+
+        $image = wp_get_attachment_image_src($this->id, Magic_Posts::instance()->prefix() . str_replace(':', '', $size));
+
+        if(!isset($image[0]) || empty($image[0])) {
+
+          $size = explode('x', $size);
+          $image = wp_get_attachment_image_src($this->id, array($size[0],$size[1]));
+          return $image[0];
+
+        } else return $image[0];
+
+      }
 
     } else {
 
-      $image = wp_get_attachment_image_src($this->id, array($size[0],$size[1]));
+      $image = wp_get_attachment_image_src($this->id, 'full');
 
       return $image[0];
 
@@ -119,39 +128,41 @@ class Magic_Posts_Image {
 
 }
 
-Magic_Posts::instance()->inject(
+if(class_exists('Magic_Posts')) {
+  Magic_Posts::instance()->inject(
 
-  'image_sizes', function($sizes)
-  {
+    'image_sizes', function($sizes)
+    {
 
-    $sizes = explode(',', $sizes);
+      $sizes = explode(',', $sizes);
 
-    foreach ($sizes as $size) {
+      foreach ($sizes as $size) {
 
-      $size_name = $size;
+        $size_name = $size;
 
-      $crop = FALSE;
+        $crop = FALSE;
 
-      if(preg_match_all('/:\S{1,}/', $size, $type)) {
+        if(preg_match_all('/:\S{1,}/', $size, $type)) {
 
-        $size = str_replace($type[0][0], '', $size);
-        if($type[0][0] == ':crop') $crop = TRUE;
+          $size = str_replace($type[0][0], '', $size);
+          if($type[0][0] == ':crop') $crop = TRUE;
 
-      }
+        }
 
-      $size = explode('x', $size);
+        $size = explode('x', $size);
 
-      if(function_exists('is_admin')) {
+        if(function_exists('is_admin')) {
 
-        add_image_size(
-          Magic_Posts::instance()->image_size($size_name),
-          $size[0], $size[1], $crop
-        );
+          add_image_size(
+            Magic_Posts::instance()->image_size($size_name),
+            $size[0], $size[1], $crop
+          );
+
+        }
 
       }
 
     }
 
-  }
-
-);
+  );
+}

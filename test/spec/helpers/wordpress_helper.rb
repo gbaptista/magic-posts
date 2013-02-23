@@ -4,7 +4,7 @@ module WordPressHelper
 
     mp_update_files if update_files
     
-    visit '/wp-admin'
+    visit path + 'wp-admin'
 
     page.should have_css '#loginform'
 
@@ -30,14 +30,24 @@ module WordPressHelper
     mysql.query('DROP DATABASE IF EXISTS `' + mysql_config['db_name'] + '`')
     mysql.query('CREATE DATABASE `' + mysql_config['db_name'] + '`')
 
-    FileUtils.rm_rf 'test/tmp' if Dir.exists? 'test/tmp'
-    FileUtils.mkdir 'test/tmp'
+    FileUtils.mkdir 'test/tmp' if !Dir.exists? 'test/tmp'
 
-    FileUtils.cp_r Dir.glob('test/data/wordpress/*'), 'test/tmp'
+    FileUtils.rm_rf 'test/tmp/'+test if Dir.exists? 'test/tmp/'+test
+    FileUtils.mkdir 'test/tmp/'+test
 
-    system('chmod 777 test/tmp/')
+    if test == 'b'
+      FileUtils.mkdir 'test/tmp/b/sub' if !Dir.exists? 'test/tmp/b/sub'
+      FileUtils.mkdir 'test/tmp/b/sub/dir' if !Dir.exists? 'test/tmp/b/sub/dir'
+      FileUtils.cp_r Dir.glob('test/data/wordpress/*'), 'test/tmp/b/sub/dir'
+      system('chmod 777 test/tmp/b/sub/dir/')
+      system('chmod 777 test/tmp/b/sub/dir/wp-content/')
+    else
+      FileUtils.cp_r Dir.glob('test/data/wordpress/*'), 'test/tmp/'+test
+      system('chmod 777 test/tmp/'+test+'/')
+      system('chmod 777 test/tmp/'+test+'/wp-content/')
+    end
 
-    visit '/'
+    visit path
 
     within('#error-page') do
       visit find_link('Create a Configuration File')['href']

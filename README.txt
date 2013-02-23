@@ -3,7 +3,7 @@ Contributors: gbaptistas
 Tags: custom posts, custom fields, custom taxonomies, scaffold, scaffolding, images, gallery
 Requires at least: 3.0.1
 Tested up to: 3.4
-Stable tag: 0.0.7
+Stable tag: 0.0.8
 License: MIT
 License URI: http://opensource.org/licenses/MIT
 
@@ -43,6 +43,9 @@ Install Magic Posts either via the WordPress.org plugin directory, or by uploadi
 4. Articles
 
 == Changelog ==
+
+= 0.0.8 =
+Image and Gallery performance improvement.
 
 = 0.0.7 =
 Bug fixes.
@@ -85,3 +88,6 @@ Fix Windows bugs and Migrations support.
 
 = 0.0.7 =
 Bug fixes.
+
+= 0.0.8 =
+Image and Gallery performance improvement.

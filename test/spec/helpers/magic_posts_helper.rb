@@ -60,7 +60,11 @@ module MagicPostsHelper
 
   def mp_update_files
 
-    mp_folder = 'test/tmp/wp-content/plugins/magic-posts/'
+    if test == 'b'
+      mp_folder = 'test/tmp/b/sub/dir/wp-content/plugins/magic-posts/'
+    else
+      mp_folder = 'test/tmp/'+test+'/wp-content/plugins/magic-posts/'
+    end
 
     FileUtils.rm_rf mp_folder if Dir.exists? mp_folder
     FileUtils.mkdir mp_folder

@@ -2,15 +2,13 @@ jQuery(document).ready(function() {
 
   if(jQuery('.m-p-m-b-image').size() || jQuery('.m-p-m-b-gallery').size()) {
 
-    function Magic_Posts_media_append(media_show, image) {
+    function Magic_Posts_media_append(media_show, image, size) {
 
       var media_html = '';
 
-      // [todo] Get the thumbnail, not the master blaster larger 1280x800 version...
-      var image_url = image.url;
-
-      // Nice try! But not today...
-      // image_url = image_url.replace('1280x800.', '380x187.');
+      var image_url = magic_posts_path + 'lib/magic-posts/helpers/image-get.php?id=';
+          image_url += image.id;
+          image_url += '&size=' + size;
 
       media_html += '<div>';
         media_html += '<img src="' + image_url + '" />';
@@ -27,7 +25,7 @@ jQuery(document).ready(function() {
 
     function Magic_Posts_image_thumb(media_show, image) {
       jQuery(media_show).html('');
-      Magic_Posts_media_append(media_show, image);
+      Magic_Posts_media_append(media_show, image, 'medium');
     }
 
     jQuery('.m-p-m-b-image').each(function() {
@@ -77,7 +75,7 @@ jQuery(document).ready(function() {
     function Magic_Posts_gallery_thumb(media_show, images) {
       jQuery(media_show).html('');
       jQuery(images).each(function() {
-        Magic_Posts_media_append(media_show, this);
+        Magic_Posts_media_append(media_show, this, 'thumbnail');
       });
     }
 

@@ -1,4 +1,4 @@
-Magic Posts 0.0.7
+Magic Posts 0.0.8
 --------
 
 WordPress Plugin: Create [Custom Post Types](http://codex.wordpress.org/Post_Types) and [Custom Fields](http://codex.wordpress.org/Custom_Fields) with [scaffolds](http://en.wikipedia.org/wiki/Scaffold_\(programming\)).
