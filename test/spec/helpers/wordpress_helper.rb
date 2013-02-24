@@ -6,6 +6,8 @@ module WordPressHelper
     
     visit path + 'wp-admin'
 
+    sleep 0.2 # Fix for Windows...
+
     page.should have_css '#loginform'
 
     within('#loginform') do

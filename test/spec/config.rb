@@ -11,26 +11,12 @@ module MagicPostsHelper
   RUN_INSTALL   = true
   UPDATE_FILES  = true
 
-  def test;         TEST;         end
-  def run_install;  RUN_INSTALL;  end
-  def update_files; UPDATE_FILES; end
-
-  def path
-    if TEST == 'b'
-      return '/sub/dir/'
-    else
-      return '/'
-    end
-  end
-
-  def mysql_config
-    {
-      'db_name'     => 'test-magic-posts-'+TEST,
-      'db_user'     => 'root',
-      'db_password' => '',
-      'db_host'     => 'localhost'
-    }
-  end
+  MYSQL_CONFIG  = {
+    'db_name'     => 'test-magic-posts-'+TEST,
+    'db_user'     => 'root',
+    'db_password' => '',
+    'db_host'     => 'localhost'
+  }
 
 end
 

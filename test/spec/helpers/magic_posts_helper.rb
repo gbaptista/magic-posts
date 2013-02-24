@@ -125,4 +125,15 @@ module MagicPostsHelper
 
   end
 
+  def test;         TEST;         end
+  def run_install;  RUN_INSTALL;  end
+  def update_files; UPDATE_FILES; end
+
+  def mysql_config; MYSQL_CONFIG; end
+
+  def path
+    return '/sub/dir/' if TEST == 'b'
+    return '/'
+  end
+
 end

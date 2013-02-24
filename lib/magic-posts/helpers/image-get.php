@@ -9,7 +9,7 @@ if(preg_match('/\//', dirname(__FILE__)))
 } else {
   $dir = explode('lib\magic-posts\helpers', dirname(__FILE__));
   $dir = $dir[0];
-  $dir = preg_replace('/\\wp-content\\plugins\\magic-posts.*/', '', $dir);
+  $dir = preg_replace('/\\\wp-content\\\plugins\\\magic-posts.*/', '', $dir);
 }
 
 // Fix for SVN repository...
