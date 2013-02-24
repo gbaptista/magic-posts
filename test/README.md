@@ -13,8 +13,10 @@ phpunit --configuration test/phpunit/magic-posts.xml
 
 ## [Capybara with RSpec](https://github.com/jnicklas/capybara)
 
+* install [Git](http://git-scm.com/)
 * install [Ruby](http://www.ruby-lang.org/)
 * install [Firefox](http://www.mozilla.org/firefox/)
+* Server with [PHP](http://php.net/) and [MySQL](http://www.mysql.com/)
 
 ### Setup
 
