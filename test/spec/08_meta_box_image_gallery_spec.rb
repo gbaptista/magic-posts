@@ -1,4 +1,4 @@
-require './test/spec/config.rb'
+require './test/spec/00_config.rb'
 
 feature 'Custom Fields' do
 
@@ -8,13 +8,15 @@ feature 'Custom Fields' do
 
     mp_add_new 'article'
 
-    within('#poststuff') do
+    mp_image_select_media '#m-p-field-a-image', 1
 
-      # puts 'go!'
+    mp_image_select_media '#m-p-field-b-image', 2
 
-    end
+    mp_gallery_select_media '#m-p-field-c-gallery', [1,2]
 
-    # find('#submitpost input[name=publish]').click
+    mp_gallery_select_media '#m-p-field-d-gallery', [2,1]
+
+    find('#submitpost input[name=publish]').click
 
   end
 

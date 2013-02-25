@@ -32,7 +32,7 @@ Edit your [hosts](http://en.wikipedia.org/wiki/Hosts_\(file\)) and server files:
 * *http://test-a.magic-posts.local* **=>** *test/tmp/a*
 * *http://test-b.magic-posts.local* **=>** *test/tmp/b*
 
-MySQL Config: [test/spec/config.rb](spec/config.rb)
+MySQL Config: [test/spec/00_config.rb](spec/00_config.rb)
 ```ruby
 MYSQL_CONFIG  = {
   'db_name'     => 'test-magic-posts-'+TEST,
@@ -50,7 +50,7 @@ rspec test/spec --format documentation
 
 #### Skip Install Tests:
 
-Change run_install: [test/spec/config.rb](spec/config.rb)
+Change run_install: [test/spec/00_config.rb](spec/00_config.rb)
 ```ruby
 RUN_INSTALL = false
 ```

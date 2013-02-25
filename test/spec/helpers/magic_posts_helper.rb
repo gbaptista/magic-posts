@@ -1,5 +1,33 @@
 module MagicPostsHelper
 
+  def mp_image_select_media selector, index=1
+    mp_select_media selector, '.m-p-m-b-image-add_media', index
+  end
+
+  def mp_gallery_select_media selector, index=1
+    mp_select_media selector, '.m-p-m-b-gallery-add_media', index
+  end
+
+  def mp_select_media selector, button, index=1
+
+    wp_create_attachment
+
+    index = [index] if !index.kind_of?(Array)
+
+    index.each do |i|
+
+      within('#poststuff ' + selector) do
+
+        find(button).click
+
+      end
+
+      wp_insert_from_media_library i
+
+    end
+
+  end
+
   def mp_add_new type
 
     within('#adminmenu #menu-posts-m-p-' + type) do

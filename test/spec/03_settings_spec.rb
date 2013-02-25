@@ -1,4 +1,4 @@
-require './test/spec/config.rb'
+require './test/spec/00_config.rb'
 
 feature 'Settings' do
 
