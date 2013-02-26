@@ -8,14 +8,14 @@ feature 'Custom Fields' do
 
     mp_add_new 'article'
 
-    mp_image_select_media '#m-p-field-a-image', 1
-
-    mp_image_select_media '#m-p-field-b-image', 2
-
-    mp_gallery_select_media '#m-p-field-c-gallery', [1,2]
-
     mp_gallery_select_media '#m-p-field-d-gallery', [2,1]
 
+    mp_gallery_select_media '#m-p-field-c-gallery', [1,2]
+    
+    mp_image_select_media '#m-p-field-b-image', 2
+
+    mp_image_select_media '#m-p-field-a-image', 1
+    
     sleep 0.2 # Fix for Windows...
     
     mp_count_images('#m-p-field-a-image').should == 1
