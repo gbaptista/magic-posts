@@ -112,6 +112,8 @@ module WordPressHelper
 
     end
 
+    page.should have_content 'Success!'
+
     wp_create_attachment
     
   end
