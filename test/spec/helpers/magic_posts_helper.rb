@@ -56,6 +56,22 @@ module MagicPostsHelper
 
   end
 
+  def mp_count_images selector
+    return page.evaluate_script("jQuery('#{selector} .media_show img').size()")
+  end
+
+  def mp_send_image_content selector
+    return Digest::MD5.digest(Net::HTTP.get_response(URI.parse(mp_image_src(selector))).body)
+  end
+
+  def mp_original_image_content file
+    return Digest::MD5.digest(File.open('test/data/uploads/2013/02/'+file, 'r').read)
+  end
+
+  def mp_image_src selector
+    return Capybara.app_host + page.evaluate_script("jQuery('#{selector} .media_show img:first').attr('src')")
+  end
+
   def mp_get_TinyMCE selector
 
     within_frame find(selector + ' iframe')[:id] do

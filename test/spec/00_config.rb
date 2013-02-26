@@ -7,7 +7,7 @@ require './test/spec/helpers/magic_posts_helper'
 
 module MagicPostsHelper
 
-  TEST          = 'b'
+  TEST          = 'a'
   RUN_INSTALL   = true
   UPDATE_FILES  = true
 

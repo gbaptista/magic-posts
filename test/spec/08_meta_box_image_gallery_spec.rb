@@ -16,7 +16,31 @@ feature 'Custom Fields' do
 
     mp_gallery_select_media '#m-p-field-d-gallery', [2,1]
 
+    mp_count_images('#m-p-field-a-image').should == 1
+    mp_count_images('#m-p-field-b-image').should == 1
+
+    mp_count_images('#m-p-field-c-gallery').should == 2
+    mp_count_images('#m-p-field-d-gallery').should == 2
+
+    mp_send_image_content('#m-p-field-a-image').should == mp_original_image_content('1280x800_HD_Wallpeper_154_Zixpk-300x187.jpg')
+    mp_send_image_content('#m-p-field-b-image').should == mp_original_image_content('01113_different_1280x800-300x187.jpg')
+
+    mp_send_image_content('#m-p-field-c-gallery').should == mp_original_image_content('1280x800_HD_Wallpeper_154_Zixpk-150x150.jpg')
+    mp_send_image_content('#m-p-field-d-gallery').should == mp_original_image_content('01113_different_1280x800-150x150.jpg')
+
     find('#submitpost input[name=publish]').click
+
+    mp_count_images('#m-p-field-a-image').should == 1
+    mp_count_images('#m-p-field-b-image').should == 1
+
+    mp_count_images('#m-p-field-c-gallery').should == 2
+    mp_count_images('#m-p-field-d-gallery').should == 2
+
+    mp_send_image_content('#m-p-field-a-image').should == mp_original_image_content('1280x800_HD_Wallpeper_154_Zixpk-300x187.jpg')
+    mp_send_image_content('#m-p-field-b-image').should == mp_original_image_content('01113_different_1280x800-300x187.jpg')
+
+    mp_send_image_content('#m-p-field-c-gallery').should == mp_original_image_content('1280x800_HD_Wallpeper_154_Zixpk-150x150.jpg')
+    mp_send_image_content('#m-p-field-d-gallery').should == mp_original_image_content('01113_different_1280x800-150x150.jpg')
 
   end
 

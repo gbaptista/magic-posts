@@ -8,6 +8,8 @@ module WordPressHelper
 
     end
 
+    sleep 0.2
+    
     within('.attachments-browser') do
 
       all('.attachment-preview')[index-1].click
