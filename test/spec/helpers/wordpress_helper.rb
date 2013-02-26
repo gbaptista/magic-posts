@@ -8,7 +8,7 @@ module WordPressHelper
 
     end
 
-    sleep 0.2 # Fix for Windows...
+    sleep 0.4 # Fix for Windows...
     
     within('.attachments-browser') do
 

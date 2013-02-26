@@ -16,6 +16,8 @@ feature 'Custom Fields' do
 
     mp_gallery_select_media '#m-p-field-d-gallery', [2,1]
 
+    sleep 0.2 # Fix for Windows...
+    
     mp_count_images('#m-p-field-a-image').should == 1
     mp_count_images('#m-p-field-b-image').should == 1
 

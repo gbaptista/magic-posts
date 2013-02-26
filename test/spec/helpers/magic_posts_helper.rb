@@ -59,11 +59,13 @@ module MagicPostsHelper
   end
 
   def mp_send_image_content selector
-    return Digest::MD5.digest(Net::HTTP.get_response(URI.parse(mp_image_src(selector))).body)
+    File.open('test/tmp/image_1.jpg', 'w') { |f| f.write Net::HTTP.get_response(URI.parse(mp_image_src(selector))).body }
+    return Digest::MD5.digest(File.open('test/tmp/image_1.jpg', 'r').read)
   end
 
   def mp_original_image_content file
-    return Digest::MD5.digest(File.open('test/data/uploads/2013/02/'+file, 'r').read)
+    File.open('test/tmp/image_2.jpg', 'w') { |f| f.write File.open('test/data/uploads/2013/02/'+file, 'r').read }
+    return Digest::MD5.digest(File.open('test/tmp/image_2.jpg', 'r').read)
   end
 
   def mp_image_src selector
