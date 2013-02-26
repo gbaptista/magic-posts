@@ -8,7 +8,7 @@ module WordPressHelper
 
     end
 
-    sleep 0.2
+    sleep 0.2 # Fix for Windows...
     
     within('.attachments-browser') do
 
@@ -22,7 +22,7 @@ module WordPressHelper
 
     end
 
-    sleep 0.2
+    sleep 0.2 # Fix for Windows...
 
   end
   
@@ -112,6 +112,8 @@ module WordPressHelper
 
     end
 
+    wp_create_attachment
+    
   end
 
   def wp_create_attachment
@@ -132,12 +134,14 @@ module WordPressHelper
       FileUtils.cp_r Dir.glob('test/data/uploads/*'), 'test/tmp/'+test+'/wp-content/uploads'
     end
 
-    begin
+    id = nil
+    mysql.query("SELECT ID FROM `test-magic-posts-#{test}`.`wp_posts` WHERE guid LIKE '%01113_different_1280x800.jpg%' LIMIT 1").each_hash { |idr| id=idr['ID'] }
+
+    if id.nil? or id.empty?
 
       mysql.query("
         INSERT INTO `test-magic-posts-#{test}`.`wp_posts`
-          (
-          `ID`,
+        (
           `post_author`,
           `post_date`,
           `post_date_gmt`,
@@ -163,7 +167,6 @@ module WordPressHelper
         )
         VALUES
         (
-         '9',
          '1',
          '2013-02-24 18:19:06',
          '2013-02-24 18:19:06',
@@ -189,39 +192,47 @@ module WordPressHelper
         );
       ")
 
+      id = nil
+      mysql.query("SELECT ID FROM `test-magic-posts-#{test}`.`wp_posts` ORDER BY id DESC LIMIT 1").each_hash { |idr| id=idr['ID'] }
+
       mysql.query("
         INSERT INTO `test-magic-posts-#{test}`.`wp_postmeta`
-          (`meta_id`,
+        (
           `post_id`,
           `meta_key`,
-          `meta_value`)
-          VALUES
-          (
-          '14', '9', '_wp_attached_file', '2013/02/01113_different_1280x800.jpg'
-          );
+          `meta_value`
+        )
+        VALUES
+        (
+         '#{id}', '_wp_attached_file', '2013/02/01113_different_1280x800.jpg'
+        );
       ")
 
       mysql.query("
         INSERT INTO `test-magic-posts-#{test}`.`wp_postmeta`
-          (
-            `meta_id`,
-            `post_id`,
-            `meta_key`,
-            `meta_value`
-          )
-          VALUES
-          (
-            '15',
-            '9',
-            '_wp_attachment_metadata',
-            '" + 'a:5:{s:5:"width";i:1280;s:6:"height";i:800;s:4:"file";s:36:"2013/02/01113_different_1280x800.jpg";s:5:"sizes";a:4:{s:9:"thumbnail";a:4:{s:4:"file";s:36:"01113_different_1280x800-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:36:"01113_different_1280x800-300x187.jpg";s:5:"width";i:300;s:6:"height";i:187;s:9:"mime-type";s:10:"image/jpeg";}s:5:"large";a:4:{s:4:"file";s:37:"01113_different_1280x800-1024x640.jpg";s:5:"width";i:1024;s:6:"height";i:640;s:9:"mime-type";s:10:"image/jpeg";}s:14:"post-thumbnail";a:4:{s:4:"file";s:36:"01113_different_1280x800-624x390.jpg";s:5:"width";i:624;s:6:"height";i:390;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:10:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";}}' + "'
-          );
+        (
+          `post_id`,
+          `meta_key`,
+          `meta_value`
+        )
+        VALUES
+        (
+          '#{id}',
+          '_wp_attachment_metadata',
+          '" + 'a:5:{s:5:"width";i:1280;s:6:"height";i:800;s:4:"file";s:36:"2013/02/01113_different_1280x800.jpg";s:5:"sizes";a:4:{s:9:"thumbnail";a:4:{s:4:"file";s:36:"01113_different_1280x800-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:36:"01113_different_1280x800-300x187.jpg";s:5:"width";i:300;s:6:"height";i:187;s:9:"mime-type";s:10:"image/jpeg";}s:5:"large";a:4:{s:4:"file";s:37:"01113_different_1280x800-1024x640.jpg";s:5:"width";i:1024;s:6:"height";i:640;s:9:"mime-type";s:10:"image/jpeg";}s:14:"post-thumbnail";a:4:{s:4:"file";s:36:"01113_different_1280x800-624x390.jpg";s:5:"width";i:624;s:6:"height";i:390;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:10:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";}}' + "'
+        );
       ")
+      
+    end
+
+    id = nil
+    mysql.query("SELECT ID FROM `test-magic-posts-#{test}`.`wp_posts` WHERE guid LIKE '%1280x800_HD_Wallpeper_154_Zixpk.jpg%' LIMIT 1").each_hash { |idr| id=idr['ID'] }
+
+    if id.nil? or id.empty?
 
       mysql.query("
         INSERT INTO `test-magic-posts-#{test}`.`wp_posts`
-          (
-          `ID`,
+        (
           `post_author`,
           `post_date`,
           `post_date_gmt`,
@@ -247,7 +258,6 @@ module WordPressHelper
         )
         VALUES
         (
-         '10',
          '1',
          '2013-02-24 20:24:10',
          '2013-02-24 20:24:10',
@@ -272,37 +282,38 @@ module WordPressHelper
          '0'
         );
       ")
+      
+      id = nil
+      mysql.query("SELECT ID FROM `test-magic-posts-#{test}`.`wp_posts` ORDER BY id DESC LIMIT 1").each_hash { |idr| id=idr['ID'] }
 
       mysql.query("
         INSERT INTO `test-magic-posts-#{test}`.`wp_postmeta`
-          (`meta_id`,
+        (
           `post_id`,
           `meta_key`,
-          `meta_value`)
-          VALUES
-          (
-          '16', '10', '_wp_attached_file', '2013/02/1280x800_HD_Wallpeper_154_Zixpk.jpg'
-          );
+          `meta_value`
+        )
+        VALUES
+        (
+          '#{id}', '_wp_attached_file', '2013/02/1280x800_HD_Wallpeper_154_Zixpk.jpg'
+        );
       ")
 
       mysql.query("
         INSERT INTO `test-magic-posts-#{test}`.`wp_postmeta`
-          (
-            `meta_id`,
-            `post_id`,
-            `meta_key`,
-            `meta_value`
-          )
-          VALUES
-          (
-            '17',
-            '10',
-            '_wp_attachment_metadata',
-            '" + 'a:5:{s:5:"width";i:1280;s:6:"height";i:800;s:4:"file";s:43:"2013/02/1280x800_HD_Wallpeper_154_Zixpk.jpg";s:5:"sizes";a:4:{s:9:"thumbnail";a:4:{s:4:"file";s:43:"1280x800_HD_Wallpeper_154_Zixpk-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:43:"1280x800_HD_Wallpeper_154_Zixpk-300x187.jpg";s:5:"width";i:300;s:6:"height";i:187;s:9:"mime-type";s:10:"image/jpeg";}s:5:"large";a:4:{s:4:"file";s:44:"1280x800_HD_Wallpeper_154_Zixpk-1024x640.jpg";s:5:"width";i:1024;s:6:"height";i:640;s:9:"mime-type";s:10:"image/jpeg";}s:14:"post-thumbnail";a:4:{s:4:"file";s:43:"1280x800_HD_Wallpeper_154_Zixpk-624x390.jpg";s:5:"width";i:624;s:6:"height";i:390;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:10:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";}}' + "'
-          );
+        (
+          `post_id`,
+          `meta_key`,
+          `meta_value`
+        )
+        VALUES
+        (
+          '#{id}',
+           '_wp_attachment_metadata',
+           '" + 'a:5:{s:5:"width";i:1280;s:6:"height";i:800;s:4:"file";s:43:"2013/02/1280x800_HD_Wallpeper_154_Zixpk.jpg";s:5:"sizes";a:4:{s:9:"thumbnail";a:4:{s:4:"file";s:43:"1280x800_HD_Wallpeper_154_Zixpk-150x150.jpg";s:5:"width";i:150;s:6:"height";i:150;s:9:"mime-type";s:10:"image/jpeg";}s:6:"medium";a:4:{s:4:"file";s:43:"1280x800_HD_Wallpeper_154_Zixpk-300x187.jpg";s:5:"width";i:300;s:6:"height";i:187;s:9:"mime-type";s:10:"image/jpeg";}s:5:"large";a:4:{s:4:"file";s:44:"1280x800_HD_Wallpeper_154_Zixpk-1024x640.jpg";s:5:"width";i:1024;s:6:"height";i:640;s:9:"mime-type";s:10:"image/jpeg";}s:14:"post-thumbnail";a:4:{s:4:"file";s:43:"1280x800_HD_Wallpeper_154_Zixpk-624x390.jpg";s:5:"width";i:624;s:6:"height";i:390;s:9:"mime-type";s:10:"image/jpeg";}}s:10:"image_meta";a:10:{s:8:"aperture";i:0;s:6:"credit";s:0:"";s:6:"camera";s:0:"";s:7:"caption";s:0:"";s:17:"created_timestamp";i:0;s:9:"copyright";s:0:"";s:12:"focal_length";i:0;s:3:"iso";i:0;s:13:"shutter_speed";i:0;s:5:"title";s:0:"";}}' + "'
+        );
       ")
 
-    rescue => e
     end
 
   end

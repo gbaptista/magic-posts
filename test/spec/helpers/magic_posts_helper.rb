@@ -10,8 +10,6 @@ module MagicPostsHelper
 
   def mp_select_media selector, button, index=1
 
-    wp_create_attachment
-
     index = [index] if !index.kind_of?(Array)
 
     index.each do |i|
